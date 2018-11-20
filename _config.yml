@@ -1,8 +1,7 @@
 #------------------------------------------------------------
 # Values for this lesson.
 #------------------------------------------------------------
-port: 4001
-
+port: 4003
 # Which carpentry is this ("swc", "dc", "lc", or "cp")?
 # swc: Software Carpentry
 # dc: Data Carpentry
@@ -11,7 +10,7 @@ port: 4001
 carpentry: "sih"
 
 # Overall title for pages.
-title: "Introduction to Artemis HPC"
+title: "Intermediate Artemis HPC: Automating analysis with job arrays"
 series_name: "Artemis Series"
 
 #------------------------------------------------------------
