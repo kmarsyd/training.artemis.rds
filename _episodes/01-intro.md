@@ -1,19 +1,18 @@
 ---
-title: "Welcome to Artemis HPC"
-teaching: 20
+title: "Welcome back to Artemis HPC"
+teaching: 15
 exercises: 0
 questions:
 - "Who are the Sydney Informatics Hub?"
-- "What is an 'Artemis'..?"
 objectives:
-- "Learn how to connect to Artemis."
+- "Connect to Artemis."
+- "Run an interactive job on Artemis"
 keypoints:
-- "Connecting to Artemis requires a terminal emulator, and an account with access."
-- "Users connect to Artemis' _**login nodes**_ only."
-- "On Windows, use X-Win32, PuTTY, or another shell and terminal application of your choice."
-- "GUI login access is also available."
+- "Recall how to connect to Artemis HPC"
+- "Recall the difference between _batch_ and _interactive_ jobs"
+- "Recall the special **Data Transfer Queue**"
 ---
-This episode introduces the [Sydney Informatics Hub](https://informatics.sydney.edu.au/), Artemis HPC and how to get connected.
+This episode introduces the [Sydney Informatics Hub](https://informatics.sydney.edu.au/), and returns us to Artemis HPC.
 
 
 # The Sydney Informatics Hub
@@ -21,7 +20,7 @@ This episode introduces the [Sydney Informatics Hub](https://informatics.sydney.
 The Sydney Informatics Hub (SIH) is a _[Core Research Facility](https://sydney.edu.au/research/facilities.html)_ of the University of Sydney. Core Research Facilities centralise essential research equipment and services that would otherwise be too expensive or impractical for individual Faculties to purchase and maintain. The classic example might be the room-size electron-microscopes, built into specialised rooms in the Sydney Microscopy & Microanalysis unit.
 
 <figure>
-  <img src="{{ page.root }}/fig/01_crf.png" style="margin:10px;height:400px"/>
+  <img src="{{ page.root }}/fig/01_crf.png" style="margin:10px;width:600px"/>
   <figcaption> USyd Core Research Facilities <a href="https://sydney.edu.au/research/facilities.html">https://sydney.edu.au/research/facilities.html</a></figcaption>
 </figure><br>
 
@@ -36,60 +35,16 @@ The Sydney Informatics Hub (SIH) is a _[Core Research Facility](https://sydney.e
 
 We also aim to cultivate a **data community** at USyd, organising monthly [Hacky Hours](https://informatics.sydney.edu.au/hackyhour/), outside training events (eg NVIDIA, Pawsey Center), [conferences](https://informatics.sydney.edu.au/hpc_conference/), and data/coding-related events. We are currently running an quarterly [Publication Incentive](https://informatics.sydney.edu.au/news/sihincentive/) contest, with $2000 worth of prizes for the winning peer-reviewed publications submitted to us, which both use our services _and_ acknowledge them.
 
-# Artemis HPC
-
-We've mentioned 'Artemis HPC' many times now, but what is it? HPC stands for 'High Performance Computing', but you might also simply call Artemis a 'supercomputer'. Technically, Artemis is a _computing cluster_, which is a whole lot of individual computers networked together. At present, Artemis consists of:
-
-* 7,636 cores (CPUs)
-* 45 TB of RAM
-* 108 NVIDIA V100 GPUs
-* 378 TB of storage
-* 56 Gbps FDR InfiniBand (networking)
-
-Artemis computers (which we'll call _machines_ or _nodes_) run a **Linux** operating system, 'CentOS' v6.9. Computing performed Artemis' nodes is managed by a **_scheduler_**, and ours is an instance of 'PBS Pro'.
-
-## Why use Artemis?
-
-Artemis is ideal for calculations that require
-* A long time to complete (long _walltime_)
-* High RAM usage
-* Big data input or outputs, or
-* Are able to use multiple cores or nodes to run in parallel, and hence much faster
-
-Artemis is **available free of charge to all** University researchers. You do need a unikey, and a valid RDMP (_Research Data Management Plan_) with Artemis access enabled.
-
-Artemis is also a great **incentive to funding bodies** to view your projects favourably -- as they know you have the resources required to get the work done.
-
-Finally, if you do use Artemis for your research, please acknowledge us! This ensures that we continue to get the funding we need to provide you with what is really a first-grade computing resource. And don't forget to apply to the Publication Incentive! A suggested acknowledgment might say:
-
-> _The authors acknowledge the Sydney Informatics Hub and the University of Sydney’s high performance  computing cluster, Artemis, for providing the computing resources that have contributed to the results reported herein._
-
-# Connecting to Artemis
-
-Connections to Artemis are **remote connections** -- you'll never sit at one of Artemis' machines, which are stored in a secure data-centre in Western Sydney. Instead, you connect remotely into one of Artemis' **login nodes**. Login nodes are Artemis machines that don't perform any actual computing jobs, but simply provide users with an access gateway to Artemis' filesystems and the PBS Pro **job scheduler**.
-
-You can thus connect to Artemis from _anywhere_, requiring only a **terminal emulator** with an **SSH client**. (If you're not on the USyd network (ie off-campus), you'll also need to connect to the University's **[VPN](http://staff.ask.sydney.edu.au/app/answers/detail/a_id/519/kw/vpn)**, or use Artemis' intermediate **_Jump server_**).
+# Connect to Artemis
 
 If you followed the [Setup]({{ page.root }}/setup) instructions, then you should already have the required software installed. If not, _please go do this now_!
 
+<h2 data-toc-text="via SSH command line"> Connect via SSH in a terminal (recommended)</h2>
 
-<h2 data-toc-text="via SSH command line"> Connecting via SSH in a terminal (recommended)</h2>
-
-Depending on your computer's operating system, there may be several ways to connect to Artemis. The simplest way is to open your **terminal emulator** application, and 'ssh' into the Artemis login-servers. This is our recommended method, as to use Artemis effectively you should get comfortable working on the **command line**.
-
-Linux and Mac both have native terminal apps, so you only need to open them. You may also have installed one on your Windows machine.<sup id="a1">[1](#f1)</sup> Go ahead and do that now. The last line displayed in your terminal window should have some information about your computer's name, and you user name, followed by a **$** symbol. This is the **command prompt** -- you type your commands after the '$'.
-
-<figure>
-  <img src="{{ page.root }}/fig/01_bash.png" style="margin:10px;height:400px"/>
-  <figcaption> An iTerm2 terminal window on Mac</figcaption>
-</figure><br>
-
-To connect to Artemis securely, we'll use the **SSH** (Secure Socket Shell) protocol; on most systems, any installed SSH client will be invoked by the command 'ssh'. Before you connect, make sure you know your **username** and **password**. When you use Artemis for your research, these will be your **Unikey** and **Unikey password**; however, for this training course we'll be using _training accounts_, which are:
+Fire up your **terminal emulator** and connect to Artemis HPC via **SSH**. When you use Artemis for your research, these will be your **Unikey** and **Unikey password**; however, for this training course we'll be using _training accounts_, which are:
 
 * Username: **ict_hpctrain\<N\>**, with N from 1-20 (replace _**\<N\>**_ with your assigned number)
 * Password: _will be written on the whiteboard!_
-
-At your command prompt, execute the following (type it and press 'return/enter'):
 
 ~~~
 ssh -X ict_hpctrain<N>@hpc.sydney.edu.au
@@ -105,7 +60,14 @@ ssh -Y ict_hpctrain<N>@hpc.sydney.edu.au
 
 The ```-X``` or ```-Y``` flags tell **ssh** to enable X-forwarding, which lets GUI programs on Artemis serve you graphical windows back on your local machine.
 
-If connecting for the first time, you may get the following output, requesting authorisation to connect to a new **host** server:
+
+<figure>
+  <img src="{{ page.root }}/fig/01_bash.png" style="margin:10px;width:600px"/>
+  <figcaption> An iTerm2 terminal window on Mac</figcaption>
+</figure><br>
+
+
+If connecting for the first time on this machine, you may get the following output, requesting authorisation to connect to a new **host** server:
 
 ~~~
 The authenticity of host 'hpc.sydney.edu.au (10.250.96.203)' can't be established.
@@ -117,14 +79,14 @@ Are you sure you want to continue connecting (yes/no)?
 Enter 'yes'. You will then be asked for your password; type it and press 'enter'. and you should then be logged in!
 
 <figure>
-  <img src="{{ page.root }}/fig/01_granted.png" style="margin:10px;height:420px"/>
+  <img src="{{ page.root }}/fig/01_granted.png" style="margin:10px;width:630px"/>
   <figcaption> Access granted! </figcaption>
 </figure><br>
 
 
 <h2 data-toc-text="via SSH GUI apps"> Connecting via an SSH GUI (common for Windows users) </h2>
 
-If you're on Windows, and followed the [Setup]({{ page.root }}/setup) guide, then you will likely be connecting through an X-window or shell client program, like 'X-Win32' or 'PuTTY'. Following the instructions in the [Setup]({{ page.root }}/setup) guide
+If you're on Windows, and followed the [Setup]({{ page.root }}/setup) guide, then you will likely be connecting through an X-window or shell client program, like 'X-Win32' or 'PuTTY'. Following the instructions in the [Setup]({{ page.root }}/setup) guide,
 * Open your installed program
 * Select the "Artemis" session you configured earlier
 * Click 'Launch' (X-Win32) or 'Open' (PuTTY)
@@ -137,9 +99,9 @@ If this is the first time connecting to Artemis, you will be asked to authorise 
   <figcaption> Unknown host challenges: X-Win32 (top), PuTTY (bottom) </figcaption>
 </figure><br>
 
-* If using 'X-Win32', you'll then be asked for your **password** and once entered, you should be logged on to Artemis! A terminal window and command prompt on Artemis will appear.
+* If using 'X-Win32', enter your **password** and once entered, and a terminal window should open on to Artemis.
 
-* If using 'PuTTY', a terminal window will appear and prompt you for your **username**, and then your **password**. Once entered, you should be logged on to Artemis! A command prompt on Artemis will appear in that window.
+* If using 'PuTTY', enter your **username**, and then your **password** in the terminal window that appears. You should now be logged in to Artemis.
 
 <figure>
   <img src="{{ page.root }}/fig/01_xwin.png" style="margin:10px;height:220px"/>
@@ -147,17 +109,135 @@ If this is the first time connecting to Artemis, you will be asked to authorise 
   <figcaption> Access granted! X-Win32 (top) cuts the welcome messages, PuTTY (bottom) </figcaption>
 </figure><br>
 
-
-<h2 data-toc-text="via graphical login nodes"> Connecting via an the Graphical Login Nodes (advanced users)</h2>
-
-For some users, it is occasionally necessary to have more reliable graphical access to the Artemis **login nodes**, in order to check intermediate results when using software with graphical outputs. Setup instructions are provided on the [Setup]({{ page.root }}/setup) page.
+<br>
 
 
-<br>   
+# Get the input data
 
-___
-**Notes**   
-<sup id="f1">1[↩](#a1)</sup> Such as 'Cygwin', 'MinGW', or even the _very handy_ ['Git for Windows'](https://gitforwindows.org/).
+We'll now retrieve the data we'll use for the examples in this course. Since it won't take very long, we'll also use this as an opportunity to demonstrate an **interactive PBS job** on Artemis, rather than the **batch** (script) jobs we performed in the [‘_Introduction to Artemis HPC_’]({{ site.sih_pages }}/training.artemis.interhpc) course.
 
-___
+## Interactive jobs
+
+**Interactive** jobs give us access to a terminal window on an Artemis **compute node** -- as opposed to the **login** nodes that we have all just logged in to. Normally, we'd need to wait a while for an interactive job to start, however since we are only doing _data transfer_ operations (eg getting our input data ready) we can use the **data transfer queue (dtq)**, and hence shouldn't have to wait too long.
+
+First, change to our project directory -- if your using a training account, then that will be the **Training** PROJECT
+
+~~~
+cd /project/Training
+~~~
+{: .bash}
+
+Now request an interactive job (```-I```) on the dtq
+
+~~~
+qsub -I -P Training -q dtq
+~~~
+{: .bash}
+
+~~~
+[jdar4135@login1 Training]$ qsub -I -P Training -q dtq
+qsub: waiting for job 2595948.pbsserver to start
+qsub: job 2595948.pbsserver ready
+
+[jdar4135@hpc242 ~]$v
+~~~
+{: .output}
+
+The last two lines will appear when your interactive job has connected. Note that the **host** indicated at the **command prompt** has changed:
+
+~~~
+[jdar4135@hpc242 ~]$
+~~~
+{: .output}
+
+You should no longer be on a **login node** but instead on one of Artemis' **compute nodes**, in this case it was **hpc242**. Note also that I've once again been moved to my **/home** directory (```~```), which you may recall is the default behaviour when logging into an Artemis machine.
+
+Move back into your project folder. Remember that we were _in_ our project folders when we submitted our ```qsub``` request, so you might also remember that because we are now technically _inside_ an Artemis job, the PBS system will have defined certain **environment variables** for us. Can you think of one that might be relevant right now?
+
+> ## Answer
+>
+> The PBS variable **PBS_O_WORKDIR** records the directory you were in _when you called **qsub**_.
+>
+> Check this with ```echo```
+> ~~~
+> echo $PBS_O_WORKDIR
+> ~~~
+> {: .bash}
+>
+> Now use this variable to return to your project folder.
+>
+> ~~~
+> cd $PBS_O_WORKDIR
+> ~~~
+> {: .bash}
+{: .solution}
+
+Now that we have returned to our project folders, create yourself a personal directory in which to work in
+
+~~~
+mkdir hayimdata && cd !$
+~~~
+{: .bash}
+
+(_In the command above, ```&&``` means 'and then do' and ```!$``` is a _Bash_ shortcut referring to the last argument of the previous command._)
+
+Now, download and extract the data archive below
+
+~~~
+wget https://www.dropbox.com/s/b0m31e4cj9wudx9/Automation.tar.gz
+
+tar -zxvf Automation.tar.gz
+~~~
+{: .bash}
+
+You should see quite a bit of output, hopefully resulting in a successful download and extraction
+~~~
+<snip>
+
+HTTP request sent, awaiting response... 200 OK
+Length: 1810727404 (1.7G) [application/octet-stream]
+Saving to: “Automation.tar.gz”
+
+100%[===============================================>] 1,810,727,404 32.7M/s   in 53s
+
+2018-11-15 12:25:37 (32.4 MB/s) - “Automation.tar.gz” saved [1810727404/1810727404]
+
+
+<snip>
+
+Automation/Alignment/equcab2_chr20.fasta.pac
+Automation/Alignment/equcab2_chr20.fasta.fai
+Automation/Alignment/canfam3_chr20.fasta.fai
+Automation/Alignment/equcab2_chr20.fasta.bwt
+Automation/Alignment/canfam3_chr20.fasta.ann
+Automation/Alignment/FM0238_D1A03ACXX_GATCAG_R2.fastq.gz
+Automation/Alignment/CMW_USCF70_D09NUACXX_R1.fastq.gz
+Automation/Alignment/BD394_C7RNWACXX_ATTCCT_L001_R2.fastq.gz
+Automation/Alignment/BD394_C16NWHCXX_ATTCCT_L002_R1.fastq.gz
+
+~~~
+{: .output}
+
+Delete the archive once you've unpacked it
+
+~~~
+rm Automation.tar.gz
+~~~
+{: .bash}
+
+Finally, we can now **exit** our interactive job.
+
+~~~
+exit
+~~~
+{: .bash}
+
+~~~
+[jdar4135@hpc242 hayimdata]$ exit
+logout
+
+qsub: job 2595955.pbsserver completed
+~~~
+{: .output}
+
 <br>

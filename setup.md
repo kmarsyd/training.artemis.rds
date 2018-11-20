@@ -1,15 +1,15 @@
 ---
-layout: page
 title: Setup
-root: .
-training_site: {{ site.sih_pages }}/training.introhpc/
+layout: page
+root: "."
+training_site: "{{ site.sih_pages }}/training.artemis.interhpc/"
 ---
 
 ## Get a shell terminal emulator
 
 To connect to Artemis HPC, and follow this lesson, you will need a **'terminal emulator'** program installed on your computer. Often just called a 'terminal', or 'shell terminal', 'shell client', terminal emulators give you a window with a _command line interface_ through which you can send commands to be executed by your computer.
 
-More precisely, these commands are executed by your _shell_, which is a program designed to do just that: execute commands! The most commonly used shell is 'Bash', and we'll generally refer to the shell as a 'Bash shell', and to scripts as 'Bash scripts'. There are other shells, and each has its own set of extra commands or syntaxes it can accept -- its own _scripting languauge_.
+More precisely, these commands are executed by your _shell_, which is a program designed to do just that: execute commands! The most commonly used shell is 'Bash', and we'll generally refer to the shell as a 'Bash shell', and to scripts as 'Bash scripts'. There are other shells, and each has its own set of extra commands or syntaxes it can accept -- its own _scripting language_.
 
 <figure>
   <img src="{{ page.root }}/fig/s_old_term.jpeg" height="250"/>
