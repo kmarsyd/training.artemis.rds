@@ -1,4 +1,9 @@
-# Contributing
+---
+layout: page
+title: "Contributing"
+---
+
+## Contributing
 
 The [Sydney Informatics Hub][sih-site] welcomes your comments, fixes and suggestions to improve our training courses!
 Using the platform and templates developed by [The Carpentries][carpentries-site], you can easily fork out GitHub repos and make edits.
@@ -10,7 +15,7 @@ fixes to existing material,
 bug reports,
 and reviews of proposed changes are all welcome.
 
-## Contributor Agreement
+### Contributor Agreement
 
 By contributing,
 you agree that we may redistribute your work under [our license](LICENSE.md).
@@ -20,6 +25,8 @@ and help you become a member of our community.
 
 ## How to Contribute
 
+### File an issue
+
 The easiest way to get started is to file an issue
 to tell us about a spelling mistake,
 some awkward wording,
@@ -27,13 +34,13 @@ or a factual error.
 This is a good way to introduce yourself
 and to meet some of our community members.
 
-1.  If you do not have a [University of Sydney GitHub][usyd-github] account,
+1.  If you do not have a [GitHub][github] account,
     you can [send us comments by email][email].
     However,
     we will be able to respond more quickly if you use one of the other methods described below.
 
-2.  If you have a [University of Sydney GitHub][usyd-github] account,
-    or are willing to [create one][usyd-github-join],
+2.  If you have a [GitHub][usyd-github] account,
+    or are willing to [create one][github-join],
     but do not know how to use Git,
     you can report problems or suggest improvements by [creating an issue][issues].
     This allows us to assign the item to someone
@@ -44,11 +51,11 @@ and to meet some of our community members.
     you can submit a pull request (PR).
     Instructions for doing this are [included below](#using-github).
 
-## Where to Contribute
+### Suggest edits
 
 1.  If you wish to change this lesson,
-    please work in <https://github.sydney.edu.au/informatics/training.artemis/>,
-    which can be viewed at <{{ site.sih_pages }}/training.artemis/>.
+    please work in <{{ site.sih_github }}/{{ site.github.repository_name }}>,
+    which can be viewed at <{{ site.sih_pages }}/{{ site.github.repository_name }}>.
 
 2.  If you wish to change the example lesson,
     please work in <https://github.com/carpentries/lesson-example>,
@@ -65,7 +72,7 @@ and to meet some of our community members.
     or HTML boilerplate for lessons or workshops stored in `_includes` or `_layouts`,
     please work in <https://github.com/carpentries/styles>.
 
-## What to Contribute
+### What to Contribute
 
 There are many ways to contribute,
 from writing new exercises and improving existing ones
@@ -80,7 +87,7 @@ it's easy for people who have been using these lessons for a while
 to forget how impenetrable some of this material can be,
 so fresh eyes are always welcome.
 
-## What *Not* to Contribute
+### What *Not* to Contribute
 
 Our lessons already contain more material than we can cover in a typical workshop,
 so we are usually *not* looking for more concepts or tools to add to them.
@@ -134,10 +141,12 @@ You can also [reach them by email][email].
 [sih-email]: mailto:sih.training@sydney.edu.au
 [sih-site]: https://informatics.sydney.edu.au
 [sih-training]: https://informatics.sydney.edu.au/training
-[sih-lessons]: {{ site.sih_pages }}/training.io/
-[issues]: https://github.sydney.edu.au/informatics/training.artemis/issues/
+[sih-lessons]: {{ site.sih_pages }}/training.home/
+[issues]: {{ site.sih_github }}/{{ site.github.repository_name }}/issues/
 [usyd-github]: https://github.sydney.edu.au
 [usyd-github-join]: https://github.sydney.edu.au/join
+[this-repo]: {{ site.sih_github }}/{{ site.github.repository_name }}
+[this-ghpage]: {{ site.sih_pages }}/{{ site.github.repository_name }}
 
 [carpentries-site]: https://carpentries.org/
 [email]: mailto:sih.training@sydney.edu.au
