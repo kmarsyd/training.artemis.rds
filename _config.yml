@@ -17,7 +17,7 @@ series_name: "Artemis Series"
 # Generic settings (should not need to change).
 #------------------------------------------------------------
 
-# What kind of thing is this ("workshop" or "lesson")?
+# What kind of thing is this ("workshop" or "lesson" or "series")?
 kind: "lesson"
 
 # Magic to make URLs resolve both locally and on GitHub.
@@ -32,6 +32,9 @@ email: "sih.training@sydney.edu.au"
 sih_site: "http://informatics.sydney.edu.au"
 sih_pages: "https://sydney-informatics-hub.github.io"
 series_home: "https://sydney-informatics-hub.github.io/training.artemis/"
+training_home: "https://sydney-informatics-hub.github.io/training.home/"
+
+# Carpentries sites
 amy_site: "https://amy.software-carpentry.org/workshops"
 carpentries_github: "https://github.com/carpentries"
 carpentries_pages: "https://carpentries.github.io"
