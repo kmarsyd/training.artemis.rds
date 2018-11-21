@@ -2,7 +2,6 @@
 title: Setup
 layout: page
 root: "."
-training_site: "{{ site.sih_pages }}/training.artemis.interhpc/"
 ---
 
 ## Get a shell terminal emulator
