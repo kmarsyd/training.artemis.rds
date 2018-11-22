@@ -1,6 +1,6 @@
 ---
-layout: page
 title: Setup
+layout: page
 root: "."
 ---
 

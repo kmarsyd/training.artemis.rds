@@ -1,8 +1,7 @@
 #------------------------------------------------------------
 # Values for this lesson.
 #------------------------------------------------------------
-port: 4100
-
+port: 4003
 # Which carpentry is this ("swc", "dc", "lc", or "cp")?
 # swc: Software Carpentry
 # dc: Data Carpentry
@@ -11,8 +10,8 @@ port: 4100
 carpentry: "sih"
 
 # Overall title for pages.
-title: "SIH Training template"
-series_name: "FIXME Series"
+title: "Intermediate Artemis HPC: Automating analysis with job arrays"
+series_name: "Artemis Series"
 
 #------------------------------------------------------------
 # Generic settings (should not need to change).
@@ -30,10 +29,9 @@ repository: <USERNAME>/<PROJECT>
 email: "sih.training@sydney.edu.au"
 
 # Sites.
-sih_site: "https://informatics.sydney.edu.au"
-sih_github: "https://github.com/Sydney-Informatics-Hub"
+sih_site: "http://informatics.sydney.edu.au"
 sih_pages: "https://sydney-informatics-hub.github.io"
-series_home: "https://sydney-informatics-hub.github.io/FIXME/"
+series_home: "https://sydney-informatics-hub.github.io/training.artemis/"
 training_home: "https://sydney-informatics-hub.github.io/training.home/"
 
 # Carpentries sites
@@ -52,12 +50,11 @@ template_repo: "https://github.com/carpentries/styles"
 training_site: "https://carpentries.github.io/instructor-training"
 workshop_repo: "https://github.com/carpentries/workshop-template"
 workshop_site: "https://carpentries.github.io/workshop-template"
-
 cc_by_human: "https://creativecommons.org/licenses/by/4.0/"
 cc_nc_human: "https://creativecommons.org/licenses/by-nc/4.0/"
 cc_nc_legal: "https://creativecommons.org/licenses/by-nc/4.0/legalcode"
 
-# .. Surveys
+# Surveys.
 swc_pre_survey: "https://www.surveymonkey.com/r/swc_pre_workshop_v1?workshop_id="
 swc_post_survey: "https://www.surveymonkey.com/r/swc_post_workshop_v1?workshop_id="
 training_post_survey: "https://www.surveymonkey.com/r/post-instructor-training"
@@ -111,4 +108,3 @@ highlighter: rouge
 # Plugins
 plugins:
   - jemoji
-  - "jekyll-github-metadata"

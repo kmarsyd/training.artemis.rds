@@ -7,7 +7,6 @@ JEKYLL=jekyll
 JEKYLL_VERSION=3.7.3
 PARSER=bin/markdown_ast.rb
 DST=_site
-JGH_TOKEN=c7026ef9ceff483b267df4cac2cc454abf55870c
 
 # Controls
 .PHONY : commands clean files
@@ -24,7 +23,7 @@ docker-serve :
 
 ## serve            : run a local server.
 serve : lesson-md
-	JEKYLL_GITHUB_TOKEN=${JGH_TOKEN} ${JEKYLL} serve
+	${JEKYLL} serve
 
 ## site             : build files but do not run a server.
 site : lesson-md
@@ -74,10 +73,7 @@ MARKDOWN_SRC = \
   $(sort $(wildcard _episodes/*.md)) \
   reference.md \
   $(sort $(wildcard _extras/*.md)) \
-  LICENSE.md \
-	CONTRIBUTING.md \
-	CITATION.md
-
+  LICENSE.md
 
 # Generated lesson files in the order they appear in the navigation menu.
 HTML_DST = \
