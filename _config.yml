@@ -31,6 +31,7 @@ email: "sih.training@sydney.edu.au"
 # Sites.
 sih_site: "http://informatics.sydney.edu.au"
 sih_pages: "https://sydney-informatics-hub.github.io"
+sih_github: "https://github.com/Sydney-Informatics-Hub"
 series_home: "https://sydney-informatics-hub.github.io/training.artemis/"
 training_home: "https://sydney-informatics-hub.github.io/training.home/"
 
