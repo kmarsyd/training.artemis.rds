@@ -109,7 +109,18 @@ Make any required edits necessary to run this script, and then submit it via ```
 > {: .bash}
 {: .solution}
 
-> ## Change #4 (optional)
+> ## Change #4 (needed in special cases)
+> If you are using the training accounts then you do not have access to all the queues. You can only submit jobs to **defaultQ** and **dtq**.
+>
+> In the normal Artemis environment you can submit to **defaultQ**, **dtq**, **small-express**, **scavenger** and possibly some strategic allocation queues.
+> ~~~
+> #PBS -q defaultQ
+> ~~~
+> {: .bash}
+{: .solution}
+<br>
+
+> ## Change #5 (optional)
 > Set up **email notification** for your job.
 >
 > Use the ```-M``` and ```-m``` PBS directive to specify a destination email address, and the events you wish to be notified about. You can receive notifications for when your job **(b)**egins, **(e)**nds or **(a)**borts.
