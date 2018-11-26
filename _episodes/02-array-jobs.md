@@ -109,7 +109,7 @@ Make any required edits necessary to run this script, and then submit it via ```
 > {: .bash}
 {: .solution}
 
-> ## Change #4 (needed in special cases)
+> ## Change #4 (needed in training environment)
 > If you are using the training accounts then you do not have access to all the queues. You can only submit jobs to **defaultQ** and **dtq**.
 >
 > In the normal Artemis environment you can submit to **defaultQ**, **dtq**, **small-express**, **scavenger** and possibly some strategic allocation queues.
@@ -163,7 +163,7 @@ Secondly, can you see how each copy of this job will execute differently? How is
 Submit the job and then take a look at your job queue
 
 ~~~
-qsub -u $USER
+qstat -u $USER
 ~~~
 {: .bash}
 
