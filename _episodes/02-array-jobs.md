@@ -109,16 +109,15 @@ Make any required edits necessary to run this script, and then submit it via ```
 > {: .bash}
 {: .solution}
 
-> ## Change #4 (needed in training environment)
-> If you are using the training accounts then you do not have access to all the queues. You can only submit jobs to **defaultQ** and **dtq**.
+> ## Change #4
+> If you are using the **Training Scheduler**<sup id="a1">[1](#f1)</sup> then you do not have access to all the queues. You can submit jobs to **defaultQ** and **dtq** _only_.
 >
-> In the normal Artemis environment you can submit to **defaultQ**, **dtq**, **small-express**, **scavenger** and possibly some strategic allocation queues.
+> In the _normal Artemis environment_ you can submit to **defaultQ**, **dtq**, **small-express**, **scavenger**, and possibly some strategic allocation queues you may have access to.
 > ~~~
 > #PBS -q defaultQ
 > ~~~
 > {: .bash}
 {: .solution}
-<br>
 
 > ## Change #5 (optional)
 > Set up **email notification** for your job.
@@ -363,7 +362,17 @@ Make any required edits necessary to run this script, and then submit it via ```
 > {: .bash}
 {: .solution}
 
-> ## Change #4 (optional)
+> ## Change #4
+> If you are using the **Training Scheduler**<sup id="a1">[1](#f1)</sup> then you do not have access to all the queues. You can submit jobs to **defaultQ** and **dtq** _only_.
+>
+> In the _normal Artemis environment_ you can submit to **defaultQ**, **dtq**, **small-express**, **scavenger**, and possibly some strategic allocation queues you may have access to.
+> ~~~
+> #PBS -q defaultQ
+> ~~~
+> {: .bash}
+{: .solution}
+
+> ## Change #5 (optional)
 > Set up **email notification** for your job.
 >
 > Use the ```-M``` and ```-m``` PBS directive to specify a destination email address, and the events you wish to be notified about. You can receive notifications for when your job **(b)**egins, **(e)**nds or **(a)**borts.
@@ -537,4 +546,12 @@ The PBS directives ```-o``` and ```-e``` in our **array_demo.pbs** script told t
 
 In our case, we saved log files called **stdout** and **stderr** in folders called **Demo****_N_** where **_N_** is the **array index** of the job. We didn't use the _Bash_ variable syntax ```$PBS_ARRAY_INDEX``` because these lines are _PBS directives **not** Bash commands_. Instead, PBS has a special syntax of it's own ```^array_index^``` for referring to the index of each array subjob inside a _directive_.
 
+
+<br>
+
+___
+**Notes**   
+<sup id="f1">1[↩](#a1)</sup>As you should recall from the [Introduction to Artemis HPC]({{ site.sih_pages }}/training.artemis.introhpc/) course, the **scheduler** is the software that runs the cluster, allocating jobs to physical compute resources. Artemis HPC provides us with a separate 'mini-cluster' for _Training_, which has a separate PBS scheduler instance and dedicated resources.
+
+___
 <br>

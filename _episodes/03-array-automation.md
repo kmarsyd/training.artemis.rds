@@ -70,6 +70,16 @@ Make any changes to the script as required, and then submit it with ```qsub```.
 > Substitute a job name of your choice!
 {: .solution}
 
+> ## Change #3
+> If you are using the **Training Scheduler**<sup id="a1">[1](#f1)</sup> then you do not have access to all the queues. You can submit jobs to **defaultQ** and **dtq** _only_.
+>
+> In the _normal Artemis environment_ you can submit to **defaultQ**, **dtq**, **small-express**, **scavenger**, and possibly some strategic allocation queues you may have access to.
+> ~~~
+> #PBS -q defaultQ
+> ~~~
+> {: .bash}
+{: .solution}
+
 <br>
 What two _Bash_ variables are referenced in this script, and what two are set?
 
@@ -144,7 +154,7 @@ cat samples.config
 
 ### Parsing with ```awk```
 
-**_Awk_** is one of those very powerful, somewhat intimidating _Linux_ tools<sup id="a1">[1](#f1)</sup> that is well worth learning. The ```awk``` command operates over text data line-by-line, performing operations over specified columns. Extra steps can also be added before and after all the lines of data have been read, which can be handy for computing summary statistics over a list of values.
+**_Awk_** is one of those very powerful, somewhat intimidating _Linux_ tools<sup id="a2">[2](#f2)</sup> that is well worth learning. The ```awk``` command operates over text data line-by-line, performing operations over specified columns. Extra steps can also be added before and after all the lines of data have been read, which can be handy for computing summary statistics over a list of values.
 
 A typical usage of the ```awk``` command might look like
 ~~~
@@ -221,7 +231,9 @@ While we're waiting for these jobs to finish, let's continue to the next Episode
 
 ___
 **Notes**   
-<sup id="f1">1[↩](#a1)</sup>In fact, _Awk_ is really a shell, a programming language and a command all in one!
+<sup id="f1">1[↩](#a1)</sup>As you should recall from the [Introduction to Artemis HPC]({{ site.sih_pages }}/training.artemis.introhpc/) course, the **scheduler** is the software that runs the cluster, allocating jobs to physical compute resources. Artemis HPC provides us with a separate 'mini-cluster' for _Training_, which has a separate PBS scheduler instance and dedicated resources.
+
+<sup id="f2">2[↩](#a2)</sup>In fact, _Awk_ is really a shell, a programming language and a command all in one!
 
 ___
 <br>
