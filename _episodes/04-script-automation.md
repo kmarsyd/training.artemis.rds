@@ -173,7 +173,7 @@ cat povray.sh
 ~~~
 {: .bash}
 
-Make any required changes to **povray.sh** and submit it with ```qsub```. When the job has complete, view each of the images to make sure they were rendered.
+Make any required changes to **povray.sh** and run it with ```bash povray.sh```. This runs ```qsub``` with each iteration of the loop and submits all the jobs. When the job has complete, view each of the images to make sure they were rendered.
 
 Note that the syntax used to retrieve elements from a _Bash array_ of length **_N_** is ```${VAR[i]}``` where **_i_** runs from _**0**_ to _**N-1**_ (ie, _Bash_ uses 'zero-indexing'). The entire array can be accessed with ```${VAR[*]}```, and an _m_ element range starting with the _j_-th by ```${VAR[*]:j:m}```.<sup id="a1">[1](#f1)</sup>
 
