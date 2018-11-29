@@ -314,7 +314,7 @@ Write another PBS script using an **array job** to render all of the images in t
 > cd $PBS_O_WORKDIR
 > config=ex1.config
 >
-> image=$(awk -v taskID=$PBS_ARRAY_INDEX '$1=taskID {print $2}' config)
+> image=$(awk -v taskID=$PBS_ARRAY_INDEX '$1==taskID {print $2}' config)
 >
 > cd $image
 > povray res $image.pov
