@@ -182,7 +182,7 @@ cd hayimdata
 ~~~
 {: .bash}
 
-(_You can use many shortcuts in unix, like the command above could be done in one line with ```mkdir hayimdata && cd !$```. Where ```&&``` means 'and then do' and ```!$``` is a _Bash_ shortcut referring to the last argument of the previous command._)
+(_You can use many shortcuts in unix, like the command above could be done in one line with ```mkdir hayimdata && cd !$```. Where ```&&``` means 'and then do' and ```!$``` is a Bash shortcut referring to the last argument of the previous command._)
 
 Now, download and extract the data archive below
 
