@@ -238,7 +238,7 @@ How would you set it for each **array index**?
 >
 > images=(castle escargot fridge glass plants snow)
 >
-> image=${images[PBS_ARRAY_INDEX]}
+> image=${images[$PBS_ARRAY_INDEX]}
 >
 > cd $PBS_O_WORKDIR/$image
 > povray res $image.pov
