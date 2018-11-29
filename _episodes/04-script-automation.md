@@ -374,9 +374,9 @@ Adapt your solution to _Exercise 1_ above to render the images in the following 
 > cd $PBS_O_WORKDIR
 > config=ex2.config
 >
-> image=$(awk -v taskID=$PBS_ARRAY_INDEX '$1=taskID {print $2}' $config)
-> width=$(awk -v taskID=$PBS_ARRAY_INDEX '$1=taskID {print $3}' $config)
-> height=$(awk -v taskID=$PBS_ARRAY_INDEX '$1=taskID {print $4}' $config)
+> image=$(awk -v taskID=$PBS_ARRAY_INDEX '$1==taskID {print $2}' $config)
+> width=$(awk -v taskID=$PBS_ARRAY_INDEX '$1==taskID {print $3}' $config)
+> height=$(awk -v taskID=$PBS_ARRAY_INDEX '$1==taskID {print $4}' $config)
 >
 > cd $image
 > povray -W$width -H$height $image.pov
