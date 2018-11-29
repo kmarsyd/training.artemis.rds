@@ -127,12 +127,14 @@ cd /project/Training
 ~~~
 {: .bash}
 
-Now request an interactive job (```-I```). FYI, training accounts cannot specify the dtq.
+Now request an interactive job (```-I```). 
 
 ~~~
 qsub -I -P Training 
 ~~~
 {: .bash}
+
+For the workflow we are currently doing you would probably want to use ```qsub -I -P Training -q dtq```, but in the training environemnt ```dtq``` is only availble to one person at a time! So we just use the default training queue (by not specifying which queue to use.)
 
 ~~~
 [jdar4135@login1 Training]$ qsub -I -P Training 
