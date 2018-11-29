@@ -127,15 +127,15 @@ cd /project/Training
 ~~~
 {: .bash}
 
-Now request an interactive job (```-I```) on the dtq
+Now request an interactive job (```-I```). FYI, training accounts cannot specify the dtq.
 
 ~~~
-qsub -I -P Training -q dtq
+qsub -I -P Training 
 ~~~
 {: .bash}
 
 ~~~
-[jdar4135@login1 Training]$ qsub -I -P Training -q dtq
+[jdar4135@login1 Training]$ qsub -I -P Training 
 qsub: waiting for job 2595948.pbsserver to start
 qsub: job 2595948.pbsserver ready
 
@@ -172,14 +172,15 @@ Move back into your project folder. Remember that we were _in_ our project folde
 > {: .bash}
 {: .solution}
 
-Now that we have returned to our project folders, create yourself a personal directory in which to work in
+Now that we have returned to our project folders, create yourself a personal directory in which to work in and change into that directory
 
 ~~~
-mkdir hayimdata && cd !$
+mkdir hayimdata 
+cd hayimdata
 ~~~
 {: .bash}
 
-(_In the command above, ```&&``` means 'and then do' and ```!$``` is a _Bash_ shortcut referring to the last argument of the previous command._)
+(_You can use many shortcuts in unix, like the command above could be done in one line with ```mkdir hayimdata && cd !$```. Where ```&&``` means 'and then do' and ```!$``` is a _Bash_ shortcut referring to the last argument of the previous command._)
 
 Now, download and extract the data archive below
 
