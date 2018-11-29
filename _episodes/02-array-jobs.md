@@ -193,10 +193,10 @@ qstat: Unknown Job Id 596901.pbsserver
 <br>
 ### qstat for array jobs
 
-What went wrong? (We left off the ```[]```). Now query all **subjobs** in your array with ```qsub -t```.
+What went wrong? (We left off the ```[]```). Now query all **subjobs** in your array with ```qstat -t```.
 
 ~~~
-qsub -t 596901[]
+qstat -t 596901[]
 ~~~
 {: .bash}
 
