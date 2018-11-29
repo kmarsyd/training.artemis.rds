@@ -4,9 +4,11 @@ root: .  # Is the only page that don't follow the partner /:path/index.html
 permalink: index.html  # Is the only page that don't follow the partner /:path/index.html
 ---
 
-**Synopsis:** Introduces USyd’s High Performance Computer (HPC), ‘Artemis’. We cover connecting and navigating Artemis, available software, and how to submit and monitor jobs using the PBS Pro scheduler..
+**Synopsis:** This course is aimed at researchers who currently use the University of Sydney’s **High Performance Computing (HPC)** cluster **‘Artemis’** and would like to learn how to automate multiple-run analyses with job arrays, and do simple bash scripting on Artemis.
 
-**Target audience:** Students and staff who would like to learn how to run compute jobs on Artemis HPC. Participants must have a valid USyd unikey.
+The live training consists of instruction and practical exercises, covering: Simple job arrays using the subjob-index as paramter; using the job-name strong as paramter; and using _configuration_ for more complex analyses.
+
+**Target audience:** Students and staff who are already using the Artemis HPC and who would like to learn how to use job arrays and bash scripting to automate the submission of multiple jobs simultaneously.
 
 **Follow-on courses:** This course is **part three** of the **[Artemis HPC Training Series]({{ site.series_home }})**.
 
