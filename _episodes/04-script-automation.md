@@ -8,7 +8,7 @@ objectives:
 - "Grow your toolkit of automation methods"
 keypoints:
 - "The ```PBS_JOBNAME``` variable can also be used to batch analyses"
-- "Array Jobs can replace _FOR_ loops in PBS scripts"
+- "Array jobs can replace _FOR_ loops in PBS scripts"
 ---
 
 # Automating with Bash scripts
@@ -182,7 +182,7 @@ Note that the syntax used to retrieve elements from a _Bash array_ of length **_
 
 _FOR_ loops are very handy, and generally efficient structures in low-level languages like _Bash_. However, for submitting a large number of jobs to the **PBS Scheduler** an **array job** is _preferable_. This is because it's less work for the scheduler to manage; it's also easier to keep track of for you!
 
-Have a look again at **single_image.pbs**
+Have a look again at **single_image.pbs**:
 
 ~~~
 cat single_image.pbs
