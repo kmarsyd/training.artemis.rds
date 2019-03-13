@@ -24,16 +24,16 @@ The Sydney Informatics Hub (SIH) is a _[Core Research Facility](https://sydney.e
   <figcaption> USyd Core Research Facilities <a href="https://sydney.edu.au/research/facilities.html">https://sydney.edu.au/research/facilities.html</a></figcaption>
 </figure><br>
 
-**Artemis HPC** itself is a multi-million dollar set of equipment, a 'supercomputer', is the main piece of equipment supported by SIH. However, we also provide a wide range of research services to aid investigators, such as
+**Artemis HPC** itself is a multi-million dollar set of equipment, a 'supercomputer', and is the main piece of equipment supported by SIH. However, we also provide a wide range of research services to aid investigators, such as:
 
 * [Training](https://informatics.sydney.edu.au/training/)
-* [Statistics Consulting](https://informatics.sydney.edu.au/services/statistics/)
+* [Statistics consulting](https://informatics.sydney.edu.au/services/statistics/)
 * Modeling/Simulation/Visualisation consulting and [platforms](https://informatics.sydney.edu.au/services/artemis/)
 * [Bioinformatics](https://informatics.sydney.edu.au/services/bioinformatics/) consulting
-* [Research Data Management](https://informatics.sydney.edu.au/rdm/) Consulting and platforms
+* [Research Data Management](https://informatics.sydney.edu.au/rdm/) consulting and platforms
 * [Data Science & Research Engineering](https://informatics.sydney.edu.au/services/data-science/) project work
 
-We also aim to cultivate a **data community** at USyd, organising monthly [Hacky Hours](https://informatics.sydney.edu.au/hackyhour/), outside training events (eg NVIDIA, Pawsey Center), [conferences](https://informatics.sydney.edu.au/hpc_conference/), and data/coding-related events. We are currently running an quarterly [Publication Incentive](https://informatics.sydney.edu.au/news/sihincentive/) contest, with $2000 worth of prizes for the winning peer-reviewed publications submitted to us, which both use our services _and_ acknowledge them.
+We also aim to cultivate a **data community** at USyd, organising monthly [Hacky Hours](https://informatics.sydney.edu.au/hackyhour/), outside training events (eg NVIDIA, Pawsey Center), [conferences](https://informatics.sydney.edu.au/hpc_conference/), and data/coding-related events. We are currently running a quarterly [Publication Incentive](https://informatics.sydney.edu.au/news/sihincentive/) contest, with $2000 worth of prizes for the winning peer-reviewed publications submitted to us, which both use our services _and_ acknowledge them.
 
 # Connect to Artemis
 
@@ -76,7 +76,7 @@ Are you sure you want to continue connecting (yes/no)?
 ~~~
 {: .output}
 
-Enter 'yes'. You will then be asked for your password; type it and press 'enter'. and you should then be logged in!
+Enter 'yes'. You will then be asked for your password: type it and press 'enter', and you should then be logged in!
 
 <figure>
   <img src="{{ page.root }}/fig/01_granted.png" style="margin:10px;width:630px"/>
@@ -86,7 +86,7 @@ Enter 'yes'. You will then be asked for your password; type it and press 'enter'
 
 <h2 data-toc-text="via SSH GUI apps"> Connecting via an SSH GUI (common for Windows users) </h2>
 
-If you're on Windows, and followed the [Setup]({{ page.root }}/setup) guide, then you will likely be connecting through an X-window or shell client program, like 'X-Win32' or 'PuTTY'. Following the instructions in the [Setup]({{ page.root }}/setup) guide,
+If you're on Windows, and followed the [Setup]({{ page.root }}/setup) guide, then you will likely be connecting through an X-window or shell client program, like 'X-Win32' or 'PuTTY'. Following the instructions in the [Setup]({{ page.root }}/setup) guide:
 * Open your installed program
 * Select the "Artemis" session you configured earlier
 * Click 'Launch' (X-Win32) or 'Open' (PuTTY)
@@ -99,7 +99,7 @@ If this is the first time connecting to Artemis, you will be asked to authorise 
   <figcaption> Unknown host challenges: X-Win32 (top), PuTTY (bottom) </figcaption>
 </figure><br>
 
-* If using 'X-Win32', enter your **password** and once entered, and a terminal window should open on to Artemis.
+* If using 'X-Win32', enter your **password** and once entered, a terminal window connected to Artemis should open.
 
 * If using 'PuTTY', enter your **username**, and then your **password** in the terminal window that appears. You should now be logged in to Artemis.
 
@@ -120,14 +120,14 @@ We'll now retrieve the data we'll use for the examples in this course. Since it 
 
 **Interactive** jobs give us access to a terminal window on an Artemis **compute node** -- as opposed to the **login** nodes that we have all just logged in to. Normally, we'd need to wait a while for an interactive job to start, however since we are only doing _data transfer_ operations (eg getting our input data ready) we can use the **data transfer queue (dtq)**, and hence shouldn't have to wait too long.
 
-First, change to our project directory -- if your using a training account, then that will be the **Training** PROJECT
+First, change to your project directory. Since we are using the Training account, that will be the **Training** PROJECT
 
 ~~~
 cd /project/Training
 ~~~
 {: .bash}
 
-Now request an interactive job (```-I```). 
+Now request an interactive job (```-I```): 
 
 ~~~
 qsub -I -P Training 
@@ -152,9 +152,9 @@ The last two lines will appear when your interactive job has connected. Note tha
 ~~~
 {: .output}
 
-You should no longer be on a **login node** but instead on one of Artemis' **compute nodes**, in this case it was **hpc242**. Note also that I've once again been moved to my **/home** directory (```~```), which you may recall is the default behaviour when logging into an Artemis machine.
+You should no longer be on a **login node** but instead on one of Artemis' **compute nodes**, in this case it was **hpc242**. Note also that I've once again been moved to my **/home** directory (```~```), which you may recall is the default behaviour when logging in to an Artemis machine.
 
-Move back into your project folder. Remember that we were _in_ our project folders when we submitted our ```qsub``` request, so you might also remember that because we are now technically _inside_ an Artemis job, the PBS system will have defined certain **environment variables** for us. Can you think of one that might be relevant right now?
+Move back in to your project folder. Remember that we were _in_ our project folders when we submitted our ```qsub``` request, so you might also remember that because we are now technically _inside_ an Artemis job, the PBS system will have defined certain **environment variables** for us. Can you think of one that might be relevant right now?
 
 > ## Answer
 >
@@ -174,7 +174,7 @@ Move back into your project folder. Remember that we were _in_ our project folde
 > {: .bash}
 {: .solution}
 
-Now that we have returned to our project folders, create yourself a personal directory in which to work in and change into that directory
+Now that we have returned to our project folders, create yourself a personal directory in which to work in and change in to that directory:
 
 ~~~
 mkdir hayimdata 
@@ -184,7 +184,7 @@ cd hayimdata
 
 (_You can use many shortcuts in unix, like the command above could be done in one line with ```mkdir hayimdata && cd !$```. Where ```&&``` means 'and then do' and ```!$``` is a Bash shortcut referring to the last argument of the previous command._)
 
-Now, download and extract the data archive below
+Now, download and extract the data archive below:
 
 ~~~
 wget https://www.dropbox.com/s/b0m31e4cj9wudx9/Automation.tar.gz
@@ -193,7 +193,7 @@ tar -zxvf Automation.tar.gz
 ~~~
 {: .bash}
 
-You should see quite a bit of output, hopefully resulting in a successful download and extraction
+You should see quite a bit of output, hopefully resulting in a successful download and extraction.
 ~~~
 <snip>
 
@@ -221,14 +221,14 @@ Automation/Alignment/BD394_C16NWHCXX_ATTCCT_L002_R1.fastq.gz
 ~~~
 {: .output}
 
-Delete the archive once you've unpacked it
+Delete the archive once you've unpacked it:
 
 ~~~
 rm Automation.tar.gz
 ~~~
 {: .bash}
 
-Finally, we can now **exit** our interactive job.
+Finally, we can now **exit** our interactive job:
 
 ~~~
 exit
