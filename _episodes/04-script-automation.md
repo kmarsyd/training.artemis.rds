@@ -56,7 +56,7 @@ What values will **$PBS_JOBNAME** need to take?
 > What will happen if we included _exgrass3_ or _plants_demo_pano_?
 {: .solution}
 
-Make any needed changes to the **single_image.pbs** script, and submit it with the first value for name above, passed to the ```qsub``` command with ```-N```
+Make any needed changes to the **single_image.pbs** script, and submit it with the first value for name above, passed to the ```qsub``` command with ```-N```:
 
 ~~~
 qsub -N castle single_image.pbs
@@ -65,7 +65,7 @@ qsub -N castle single_image.pbs
 
 Monitor your job as usual, and when it is done check that it was successful. In addition to the log files and **Exit Status: 0**, there should now be a **.png** image file created in the **castle** directory.
 
-If you have enabled x-window forwarding (ie you used ```ssh -X``` or _X-Win32_ on _Windows_), then you should be able to display the image; is the ```display``` command from the _ImageMagick_ image processing suite:
+If you have enabled x-window forwarding (ie you used ```ssh -X``` or _X-Win32_ on _Windows_), then you should be able to display the image. Use the ```display``` command from the _ImageMagick_ image processing suite:
 
 ~~~
 module load imagemagick
@@ -145,7 +145,7 @@ done
 This is why we call these '**_FOR_**' loops; they iterate over a list of variables, once for each value the variable can take.
 
 <br>
-Now, let's return to out **single_image.pbs** script. Can you write a_FOR_loop to submit a job for each of the images we identified earlier?
+Now, let's return to our **single_image.pbs** script. Can you write a _FOR_ loop to submit a job for each of the images we identified earlier?
 
 > ## Answer
 > ~~~
@@ -173,7 +173,7 @@ cat povray.sh
 ~~~
 {: .bash}
 
-Make any required changes to **povray.sh** and run it with ```bash povray.sh```. This runs ```qsub``` with each iteration of the loop and submits all the jobs. When the job has complete, view each of the images to make sure they were rendered.
+Make any required changes to **povray.sh** and run it with ```bash povray.sh```. This runs ```qsub``` with each iteration of the loop and submits all the jobs. When the job has completed, view each of the images to make sure they were rendered.
 
 Note that the syntax used to retrieve elements from a _Bash array_ of length **_N_** is ```${VAR[i]}``` where **_i_** runs from _**0**_ to _**N-1**_ (ie, _Bash_ uses 'zero-indexing'). The entire array can be accessed with ```${VAR[*]}```, and an _m_ element range starting with the _j_-th by ```${VAR[*]:j:m}```.<sup id="a1">[1](#f1)</sup>
 
@@ -249,7 +249,7 @@ How would you set it for each **array index**?
 {: .solution}
 
 <br>
-Aside: If you had *lots* of images in named directories to process, you could use **globbing** or the ```find``` function to get a list of directory names to make your '**images**' _Bash_ array variable. Eg, with globbing (using __*__ wildcards) you could write
+Aside: If you had *lots* of images in named directories to process, you could use **globbing** or the ```find``` function to get a list of directory names to make your '**images**' _Bash_ array variable. Eg, with globbing (using __*__ wildcards) you could write:
 ~~~
 images=(`echo */ | xargs -n1 basename`)
 ~~~
