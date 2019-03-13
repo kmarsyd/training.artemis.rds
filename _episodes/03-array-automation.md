@@ -17,7 +17,7 @@ This episode introduces different ways to use array jobs to automate, or 'batch'
 
 ## Using the Array Index as a parameter
 
-The **array index** takes integer values in a sequence, as defined with the ```-J i-f:s``` **PBS** option. In some cases, you may be able to directly use these indices to refer to the specific input files, directories or parameters you want as inputs for your array of compute jobs. For example
+The **array index** takes integer values in a sequence, as defined with the ```-J i-f:s``` **PBS** option. In some cases, you may be able to directly use these indices to refer to the specific input files, directories or parameters you want as inputs for your array of compute jobs. For example:
 
 - You might have input data files named **inputDataN.dat**, which you could invoke in your PBS script as ```inputData${PBS_ARRAY_INDEX}.dat```
 
@@ -25,7 +25,7 @@ The **array index** takes integer values in a sequence, as defined with the ```-
 
 - You might have a set of parameters you wish to use; eg you could test rates from **0.1 to 1.0** with ```rate=$(echo "scale=2; $PBS_ARRAY_INDEX/10" | bc)```, using the POSIX 'basic calculator' function ```bc``` to divide by 10
 
-The next example exercise uses this last method to test different length substrings (_k-mers_) of a DNA sequence. Navigate to the **Assembly** folder in the data we extracted earlier, and open the **assembly.pbs** script file
+The next example exercise uses this last method to test different length substrings (_k-mers_) of a DNA sequence. Navigate to the **Assembly** folder in the data we extracted earlier, and open the **assembly.pbs** script file:
 
 ~~~
 cd ../Assembly
@@ -44,7 +44,7 @@ nano assembly.pbs
 
 This script tests _k-mer_ lengths from **31 to 51** in steps of **10** -- so **_31, 41_** and **_51_**. Since these are integer values, no fancy math operations are needed, just the array index itself.
 
-The _2nd argument_ to the ```velveth``` function called in this script is _k-mer word length_. The function also takes a directory name as its _1st argument_, and outputs its results into there.
+The _2nd argument_ to the ```velveth``` function called in this script is _k-mer word length_. The function also takes a directory name as its _1st argument_, and outputs the results into there.
 
 Make any changes to the script as required, and then submit it with ```qsub```.
 
@@ -113,14 +113,14 @@ How might an additional PBS-initialised _Bash_ variable be used in this script?
 
 
 <br>
-Monitor your job's status with ```qstat -t```. When all subjobs have complete, check for any non-zero **exit statuses**, indicating errors
+Monitor your job's status with ```qstat -t```. When all subjobs have completed, check for any non-zero **exit statuses**, indicating errors:
 
 ~~~
 grep -L "Exit Status: 0" VelvetHayim*usage | xargs cat
 ~~~
 {: .bash}
 
-(This set of commands looks for **\_usage** log files which _do not_ contain **"Exit Status: 0"**, and then calls ```xargs``` to send them to the ```cat``` function, printing their contents to the terminal output. Make sure to use _your job's_ name, not mine!)
+The above set of commands looks for **\_usage** log files which _do not_ contain **"Exit Status: 0"**, and then calls ```xargs``` to send them to the ```cat``` function, printing their contents to the terminal output. Make sure to use _your job's_ name, not mine!
 
 
 ## Using the Array Index with a _config_ file
@@ -149,14 +149,14 @@ cat samples.config
 ~~~
 {: .output}
 
-**samples.config** demonstrates an example configuration file. The first line -- a comment -- lists the column headers. Each line after defines an analysis to be run. There are four analyses (1-4), each defined by their input data (a **.fasta** file), and various metadata. The aim is to write a single **PBS script** that will run all 4.
+**samples.config** demonstrates an example configuration file. The first line (a comment) lists the column headers. Each line after defines an analysis to be run. There are four analyses (1-4), each defined by their input data (**.fastq** raw data and **.fasta** reference files), and various metadata. The aim is to write a single **PBS script** that will run all 4.
 
 
 ### Parsing with ```awk```
 
 **_Awk_** is one of those very powerful, somewhat intimidating _Linux_ tools<sup id="a2">[2](#f2)</sup> that is well worth learning. The ```awk``` command operates over text data line-by-line, performing operations over specified columns. Extra steps can also be added before and after all the lines of data have been read, which can be handy for computing summary statistics over a list of values.
 
-A typical usage of the ```awk``` command might look like
+A typical usage of the ```awk``` command might look like:
 ~~~
 breed=$(awk -v taskID=$PBS_ARRAY_INDEX '$1==taskID {print $3}' $config)
 ~~~
@@ -176,13 +176,13 @@ The last argument, ```$config``` points to the input text we want **awk** to ope
 
 The second argument to **awk** contains the operations we want **awk** to run, listed between ```''``` single apostrophes. Numbered variables, eg ```$1``` and ```$3``` refer to the _columns_ of the text input, with the leftmost column being _1_. Any relational operators (**==**, or **>**, etc) are treated as _conditionals_; any commands relating to a conditional follow it inside ```{}```.
 
-So, the command above tells **awk** to find where _column 1 is equal to **taskID**_, and then _print out_ the contents of _column 3_. Eg, for subjob #2 (when **taskID** = **$PBS_ARRAY_INDEX** is _**2**_) this would find the 2nd data row in **samples.config**
+So, the command above tells **awk** to find where _column 1 is equal to **taskID**_, and then _print out_ the contents of _column 3_. Eg, for subjob #2 (when **taskID** = **$PBS_ARRAY_INDEX** is _**2**_) this would find the 2nd data row in **samples.config**:
 ~~~
 2	BD394	Boxer	canfam3_chr20.fasta	UCDavis	C7RNWACXX,C16NWHCXX
 ~~~
 {: .bash}
 
-and print out the 'Breed' entry (column 3). This output is 'printed' to _**stdout**_, but since the whole command was enclosed in an expansion and assignment ```breed=$(..)```, this result, 'Boxer', is stored into the **breed** variable in the script.
+and print out the 'Breed' entry (column 3). This output is 'printed' to _**stdout**_, but since the whole command was enclosed in an expansion and assignment ```breed=$(..)```, this result, 'Boxer', is stored in the **breed** variable in the script.
 
 Take a minute to process all this.. when you think you have it, let's take a look at the whole PBS script.
 
