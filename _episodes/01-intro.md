@@ -40,25 +40,25 @@ f you are not already connected to Artemis, please establish a connection now. M
 
 Even if you have your own Artemis and/or RDS account, please use our training unikeys/logins for the day. If you have not yet been assigned one, please let one of our staff know. These logins are
 
----
+~~~
 ict_hpctrain<N>
----
+~~~
 {: .bash}
 
 where N is a number between 1 and 40. Each user today will have a different number, and be members of the same DashR project called ‘Training’.Note: whenever you see the angle brackets, this means “replace the brackets AND their contents with the relevant content to you”. Once you are connected to Artemis, make a directory for yourself to work in within the /project/Training directory. Call it something unique (not just “training”) and memorable. Please do not include spaces, and remember that CASE MATTERS very much on Linux systems. 
 
 Make your directory
 
----
+~~~
 mkdir /project/Training/<yourDirectoryName>
----
+~~~
 {: .bash}
 
 Then change into it:
 
----
+~~~
 cd /project/Training/<yourDirectoryName> 
----
+~~~
 {: .bash}
 
 
@@ -80,26 +80,26 @@ Mac users: you can use your Mac terminal app. Keep your Artemis session open, an
 First, change into the directory that contains the data you want to transfer (or else you will need to prepend the full pathname in front of the file name). 
 
 The syntax for scp is
----
+~~~
 scp <user@host:file> <user@host:to> 
----
+~~~
 {: .bash} 
 
 Since the file to be transferred is local, you do not need to include user@host. Run the below command to copy the scripts archive to your working directory on Artemis:
 
----
+~~~
 scp dogScripts.tar.gz  ict_hpctrain<N>@hpc.sydney.edu.au:/ project/Training/<yourDirectoryName>
----
+~~~
 {: .bash}
  
 Then unpack the archive, move the scripts, and delete the archive and empty directory:
 
----
+~~~
 tar -zxvf dogScripts.tar.gz 
 mv dogScripts/* . 
 rmdir dogScripts 
 rm dogScripts.tar.gz 
----
+~~~
 {: .bash}
 
 
@@ -120,9 +120,9 @@ In the ‘Password’ field, enter the training password.
 In the ‘Port’ field, you can leave it blank (default is 22).
 Then click ‘Quick connect’. 
 You will be prompted about saving passwords, you can choose whether or not to do this. When you are looged on, you should see the following message printed in the top panel
----
+~~~
 Status:    Directory listing of "/home/ict_hpctrain<N>" successful
----
+~~~
 {: .output}
 
 
@@ -153,12 +153,12 @@ As you can see, FileZilla is very simple to use. It can be used just as easily t
 
 Now go back to your terminal connected to Artemis and run the following commands to unpack the archive, move the scripts, and delete the archive and empty directory:
 
----
+~~~
 tar -zxvf dogScripts.tar.gz 
 mv dogScripts/* . 
 rmdir dogScripts 
 rm dogScripts.tar.gz
----
+~~~
 {: .bash}
 
 
@@ -172,16 +172,16 @@ In a web browser, go to ```https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_fami
 
 Within your Artemis terminal, enter the ‘wget’ command, then after a space, paste the URL:
 
----
+~~~
 wget https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_familiaris/CHR_05/cfa_ref_CanFam3.1_chr5.fa.gz 
----
+~~~
 {: .bash}
 
 Unzip the file:
 
----
+~~~
 gunzip cfa_ref_CanFam3.1_chr5.fa.gz 
----
+~~~
 {: .bash}
 
 While wget is very handy for small files, it poses some risks for larger files or large collections of files. Can you think of what these might be? 
@@ -200,32 +200,32 @@ We will instead ‘wrapper’ the wget commands in a PBS script, as you are now 
 
 View the script ```download.pbs``` with the ```cat``` command: 
 
----
+~~~
 cat download.pbs 
----
+~~~
 {: .bash}
 
 You don’t need to change anything in this script, but note that we have specified to run the job on the ***dtq*** queue using the ```-q``` flag. 
 
 Also note that the data will be downloaded to your current working directory (ie, where you are situated when you run the ```qsub``` command). This is because the script changes you to that directory using the PBS environment variable ***$PBS_O_WORKDIR***. If you are not in the correct directory to receive your download, change there now, then submit the transfer with: 
 
----
+~~~
 qsub download.pbs 
----
+~~~
 {: .bash}
 
 Check the status with ```qstat```: 
 
----
+~~~
 qstat -xu <unikey> 
----
+~~~
 {: .bash}
 
 or 
 
----
+~~~
 qstat -x <jobID> 
----
+~~~
 {: .bash}
 
 Once your transfer job has completed, confirm that you have the expected files (eg ```ls -l```). 
@@ -250,14 +250,14 @@ There is an even easier way! Our HPC’s management team have created a handy ut
 
 The minimum syntax to run dt-script is: 
 
----
+~~~
 dt-script -P <Project> -f <from> -t <to> 
----
+~~~
 {: .bash}
 
 You can include additional arguments, such as: 
 
----
+~~~
 -N <jobname> #(default is ‘dt-script') 
 
 -w <walltime> #(default is 24 hours) 
@@ -265,16 +265,16 @@ You can include additional arguments, such as:
 -ncpus <ncpus> #(default is 2)
 
 -m #(mem, default is 2gb)
----
+~~~
 {: .bash}
 
  and others. Run ```dt-script -h``` for a full list.
 
 Your collaborator has placed the reference files needed in the ```Training``` RCOS space in a directory called ```Dog_disease/Ref```. To get these files into your current working directory for today, run the following command: 
 
----
+~~~
 dt-script -N getRef<yourName> -P Training -ncpus 1 -m 1gb -w 00:05:00 -f /rds/PRJ-Training/Dog_disease/Ref/ -t /project/Training/<yourDirectoryName>/ 
----
+~~~
 {: .bash}
 
 Once your transfer job has completed, confirm that you have the expected files (eg ```ls -l```). 
@@ -304,32 +304,32 @@ The process is to submit the first job, then submit the second job including the
 
 The data we need is in the ```Training``` RCOS space in a directory called ```Dog_disease/Data```. The script we want to run when the data is transferred is called ‘map.pbs’. You don’t need to make any changes to this script, although you may wish to change the job name to clearly identify your job in the queue.  View the script with the ```cat``` command: 
 
----
+~~~
 cat map.pbs 
----
+~~~
 {: .bash}
 
 Note the line ```cd $PBS_O_WORKDIR``` . The analysis command ```bwa mem``` looks for the input files in the present working directory, and since PBS considers this to be your HOME directory, you need to ensure bwa can find the right files. This can be done using ‘cd’ to your present working directory as we have here, or else you need to include full pathnames to the input and output files. There are pros and cons to each method, but we have used ```cd``` for simplicity here. So ensure you are in the right directory when you submit the job to PBS, or else it will fail! 
 
 Submit the data transfer job: 
 
----
+~~~
 dt-script -N getData<yourName> -P Training -ncpus 1 -m 1gb -w 00:10:00 -f /rds/PRJ-Training/Dog_disease/Data/ -t `pwd` 
----
+~~~
 {: .bash}
 
----
 
----
+
+~~~
 459974.pbstraining
----
+~~~
 {: .output}
 
 Note the job ID, you will feed this into the next command line: 
 
----
+~~~
 qsub -W depend=afterok:<jobID> map.pbs 
----
+~~~
 {: .bash}
  
 
@@ -345,9 +345,9 @@ qsub -W depend=afterok:<jobID> map.pbs
 
 Check job status: 
 
----
+~~~
 qstat -u ict_hpctrain<N> 
----
+~~~
 {: .bash}
 
 Note that the map job shows status ```H``` (held). It will remain ‘held’ until the ‘getData’ job completes. If ‘getData’ completes successfully, ‘map’ job will enter the queue (it may run right away and show ```R``` status, or it may queue for a while and show ```Q``` status). If ‘getData’ does not complete successfully (ie returns a non-zero exit status) then ‘map’ will not run at all.
@@ -362,18 +362,18 @@ It’s great practice to routinely back up your Artemis project (whether the dat
 
 To backup an ENTIRE project, you can simply run: 
 
----
+~~~
 dt-script -P <Project> -f /project/<Project> -t /rds/PRJ-<Project> 
----
+~~~
 {: .bash}
 
 Today you want to back up only your working directory, to your personal location on RCOS. Since many of you do/will have many colleagues working in the same Artemis project as you, this may be more applicable at times. You don’t need to first create the destination directory on RCOS, because ‘rsync’ makes precise use of trailing slashes in directory paths to make or not make new directory levels. If we leave the trailing slash from the source (our working directory) it will automatically create that directory for us on the destination, if that directory doesn’t exist. See ```man rsync``` for more information on this behavior. 
 
  So to back up your working directory for today, make sure you are situated within the directory containing the data to backup (so that you can make use of `pwd` shortcut, which omits the trailing slash), then run: 
 
----
+~~~
 dt-script -P Training -N backup<yourName> -f `pwd` -t /rds/PRJ-Training 
----
+~~~
 {: .bash}
 
 Backup sorted! 
@@ -394,16 +394,16 @@ To transfer data between Artemis and classic RDS, we use an ftp-like command lin
 
 To connect to smbclient: 
 
----
+~~~
 smbclient <path> -U <unikey> -W SHARED 
----
+~~~
 {: .bash}
 
 In this case: 
 
----
+~~~
 smbclient //research-data.shared.sydney.edu.au/RDS-01 -U ict_hpctrain1 -W SHARED 
----
+~~~
 {: .bash}
 
 <figure>
@@ -419,26 +419,26 @@ By default, ‘prompting’ (the system prompts you between transferring each fi
 
 Since we want to copy our Output directory to classic RDS, we should turn prompt OFF and recurse ON: 
 
----
+~~~
 prompt off 
 recurse on 
----
+~~~
 {: .bash}
 
 Then make a directory for the dataset: 
 
----
+~~~
 mkdir Dog_disease 
 
 cd Dog_disease 
----
+~~~
 {: .bash}
 
 Then transfer the Output directory and its contents: 
 
----
+~~~
 mput Output 
-----
+~~~-
 {: .bash}
 
 
