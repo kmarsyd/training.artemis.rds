@@ -458,13 +458,15 @@ Single files can be transferred from Artemis to classic RDS with ```put```. Sing
 
 Just as we accessed Artemis through the FileZilla interface earlier, we can likewise access the RCOS server. The hostname for RCOS server is 
 
+From external to university network:
 ```
-rcos sydney.edu.au``` (external) 
-
- 
+rcos sydney.edu.au 
 ```
-rcos-int.sydney.edu.au``` (internal) 
 
+From internal to university network:
+```
+rcos-int.sydney.edu.au (internal) 
+```
  
 
 Open FileZilla and in the host field enter: 
