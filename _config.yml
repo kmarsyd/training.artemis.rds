@@ -10,7 +10,7 @@ port: 4003
 carpentry: "sih"
 
 # Overall title for pages.
-title: "Intermediate Artemis HPC: Automating analysis with job arrays"
+title: "Data transfer and Research Data Storage with High Performance Computing"
 series_name: "Artemis Series"
 
 #------------------------------------------------------------
