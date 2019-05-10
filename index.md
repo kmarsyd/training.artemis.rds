@@ -4,22 +4,17 @@ root: .  # Is the only page that don't follow the partner /:path/index.html
 permalink: index.html  # Is the only page that don't follow the partner /:path/index.html
 ---
 
-**Synopsis:** This course is aimed at researchers who currently use the University of Sydney’s **High Performance Computing (HPC)** cluster **‘Artemis’** and would like to learn how to automate multiple-run analyses with job arrays, and do simple bash scripting on Artemis.
+**Synopsis:** This course is aimed at researchers who want to learn how to transfer data between your local computer, an external source, the **Research Data Store (RDS)** and the **Artemis High Performance Computer (HPC)**. This course will introduce smart strategies for maanging your data and how to back up HPC output onto the RDS. The skills and tools learned in this session can be applicable to any remote storage and HPC environments.
 
-The live training consists of instruction and practical exercises, covering: Simple job arrays using the subjob-index as parameter; using the job-name string as parameter; and using _configuration_ for more complex analyses.
+The live training consists of instruction and practical exercises, covering tools such as: scp, rsync, mv, cp, filezilla, winscp, ssh, smbclient.
 
-**Target audience:** Students and staff who are already using the Artemis HPC and who would like to learn how to use job arrays and bash scripting to automate the submission of multiple jobs simultaneously.
+**Target audience:** Students and staff who are would like to use the Research Data Store and the Artemis HPC.
 
-**Follow-on courses:** This course is **part three** of the **[Artemis HPC Training Series]({{ site.series_home }})**.
-
-It follows the introductory courses  [‘_Introduction to Artemis HPC_’]({{ site.sih_pages }}/training.artemis.introhpc) and [‘_Data transfer and RDS for HPC_’]({{ site.sih_pages }}/training.artemis.rds).
-
-The final lesson, ['_Matlab on Artemis: The MDCS_']({{ site.sih_pages }}/training.artemis.mdcs), is an optional course for users of MATLAB who would like to submit jobs directly to the cluster from their local computers.
+**Follow-on courses:** This course is **part two** of the **[Artemis HPC Training Series]({{ site.series_home }})**.
+It follows on from the introductory courses  [‘_Introduction to Artemis HPC_’]({{ site.sih_pages }}/training.artemis.introhpc). 
 
 > ## Prerequisites
-> You are assumed to have your own Artemis account, know how to connect to Artemis, navigate its filesystem, and submit jobs to the PBS Scheduler. If you are not familiar with Artemis, you must take [‘_Introduction to Artemis HPC_’]({{ site.sih_pages }}/training.artemis.interhpc) before attempting this course. This will teach you the minimum requirements for you to be able to attempt the Intermediate course. 
->
-> You must have competency on the Unix/Linux command line. If you are interested in learning HPC but have no Unix/Linux command-line skills, you MUST first take an [Introduction to Unix/Linux](https://intersect.org.au/training/course/unix) course, followed by [‘_Introduction to Artemis HPC_’]({{ site.sih_pages }}/training.artemis.interhpc).
+> You must have competency on the Unix/Linux command line. If you are interested in learning HPC but have no Unix/Linux command-line skills, you MUST first take an [Introduction to Unix/Linux](https://intersect.org.au/training/course/unix) course, followed by [‘_Introduction to Artemis HPC_’]({{ site.sih_pages }}/training.artemis.interhpc). These are [scheduled regularly on campus](https://informatics.sydney.edu.au/training/#calendar).
 >
 > **OWN LAPTOP REQUIRED**.
 {: .prereq}
