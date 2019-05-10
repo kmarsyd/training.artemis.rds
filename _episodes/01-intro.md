@@ -40,10 +40,9 @@ f you are not already connected to Artemis, please establish a connection now. M
 
 Even if you have your own Artemis and/or RDS account, please use our training unikeys/logins for the day. If you have not yet been assigned one, please let one of our staff know. These logins are
 
-~~~
+```
 ict_hpctrain<N>
-~~~
-{: .bash}
+```
 
 where N is a number between 1 and 40. Each user today will have a different number, and be members of the same DashR project called ‘Training’.Note: whenever you see the angle brackets, this means “replace the brackets AND their contents with the relevant content to you”. Once you are connected to Artemis, make a directory for yourself to work in within the /project/Training directory. Call it something unique (not just “training”) and memorable. Please do not include spaces, and remember that CASE MATTERS very much on Linux systems. 
 
@@ -62,7 +61,7 @@ cd /project/Training/<yourDirectoryName>
 {: .bash}
 
 
-#Transfer from LOCAL to Artemis HPC
+# Transfer from LOCAL to Artemis HPC
 
 Back to the case study... Since you haven’t run this kind of analysis before, your helpful collaborator has emailed you a ‘tar’ file (packaged directory) of scripts to use to analyse the data. 
 
@@ -168,9 +167,9 @@ rm dogScripts.tar.gz
 
 You need to get a reference file from an online database to use as input for your analysis. A simple way of retrieving files from the web is using the command line utility ‘wget’ (web-get). 
 
-In a web browser, go to ```https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_familiaris/CHR_05/``` . Right click on the file ```cfa_ref_CanFam3.1_chr5.fa.gz``` then select “Copy link address” or “Copy link location”. 
+In a web browser, go to [https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_familiaris/CHR_05/](https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_familiaris/CHR_05/) . Right click on the file ```cfa_ref_CanFam3.1_chr5.fa.gz``` then select “Copy link address” or “Copy link location”. 
 
-Within your Artemis terminal, enter the ‘wget’ command, then after a space, paste the URL:
+Within your Artemis terminal, enter the ```wget``` command, then after a space, paste the URL:
 
 ~~~
 wget https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_familiaris/CHR_05/cfa_ref_CanFam3.1_chr5.fa.gz 
@@ -192,11 +191,12 @@ While wget is very handy for small files, it poses some risks for larger files o
  Our next data transfer is a bit larger, so we will use a different method that is more robust.
 
 
-#Transfer from WEB to Artemis HPC: a safer way with ‘dtq’ 
+
+# Transfer from WEB to Artemis HPC: a safer way with ‘dtq’ 
 
 The raw DNA sequence data for this analysis is hosted online. You could run wget in the foreground as we did for the last data transfer, but we won’t because the files are large. 
 
-We will instead ‘wrapper’ the wget commands in a PBS script, as you are now familiar with from this morning’s [Introduction to the Artemis HPC course](https://sydney-informatics-hub.github.io/training.artemis.introhpc/). We will submit them to a **dedicated data transfer queue** on Artemis called ***dtq** which is exempt from fair share. This will be good news to those of you with big datasets to move around 😊 
+We will instead ‘wrapper’ the wget commands in a PBS script, as you are now familiar with from this morning’s [Introduction to the Artemis HPC course](https://sydney-informatics-hub.github.io/training.artemis.introhpc/). We will submit them to a **dedicated data transfer queue** on Artemis called ***dtq*** which is exempt from fair share. This will be good news to those of you with big datasets to move around 😊 
 
 View the script ```download.pbs``` with the ```cat``` command: 
 
@@ -257,18 +257,12 @@ dt-script -P <Project> -f <from> -t <to>
 
 You can include additional arguments, such as: 
 
-~~~
--N <jobname> #(default is ‘dt-script') 
+| ```-N <jobname>``` | default is ‘dt-script' |
+|```-w <walltime>``` | default is 24 hours |
+|```-ncpus <ncpus>``` | default is 2 |
+|``` -m <mem>``` | default is 2gb |
 
--w <walltime> #(default is 24 hours) 
-
--ncpus <ncpus> #(default is 2)
-
--m #(mem, default is 2gb)
-~~~
-{: .bash}
-
- and others. Run ```dt-script -h``` for a full list.
+and others. Run ```dt-script -h``` for a full list.
 
 Your collaborator has placed the reference files needed in the ```Training``` RCOS space in a directory called ```Dog_disease/Ref```. To get these files into your current working directory for today, run the following command: 
 
@@ -319,7 +313,7 @@ dt-script -N getData<yourName> -P Training -ncpus 1 -m 1gb -w 00:10:00 -f /rds/P
 {: .bash}
 
 
-
+Output:
 ~~~
 459974.pbstraining
 ~~~
@@ -438,7 +432,7 @@ Then transfer the Output directory and its contents:
 
 ~~~
 mput Output 
-~~~-
+~~~
 {: .bash}
 
 
@@ -457,7 +451,7 @@ The output data can now be readily accessed via the local file explorer under th
 </figcaption>
 </figure><br>
 
-Single files can be transferred from Artemis to classic RDS with ```put```. Single files can be transferred from classic RDS to Artemis with ```get```, or multiple files with ```mget```. To log out of smblicent, enter ``control + C```.
+Single files can be transferred from Artemis to classic RDS with ```put```. Single files can be transferred from classic RDS to Artemis with ```get```, or multiple files with ```mget```. To log out of smblicent, enter ```control + C```.
 
 
 # Transfer from RCOS to local with FileZilla 
