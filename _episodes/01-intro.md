@@ -17,26 +17,26 @@ This epsiode introduces the Research Data Storage options available at the Unive
 
 # What is the Research Data Store?
 
-Artemis is not backed up. Its hardware is geared towards processing. We have a dedicated set of machines for safe data storage, collectively referred to asthe Research Data Store (RDS). RDS has two “flavours”: ***Research Computing Optimised Storage (RCOS)*** and ***‘classic’ RDS***. While the names differ, they are both RDS: both backed up, and both linked to a project via the Researcher Dashboard(DashR). However, they are separate machines, so each project in DashR can have only one or the other. 
+Artemis is not backed up. Its hardware is geared towards processing. We have a dedicated set of machines for safe data storage, collectively referred to as the Research Data Store (RDS). RDS has two “flavours”: ***Research Computing Optimised Storage (RCOS)*** and ***‘classic’ RDS***. While the names differ, they are both RDS: both backed up, and both linked to a project via the Researcher Dashboard (DashR). However, they are separate machines, so each project in DashR can have only one or the other. 
 
 When you fill in a DashR form, if you select Artemis HPC access for your project, the default selection for RDS is RCOS. You may change this to ‘classic’ RDS if this suits your needs best. 
 
-***RCOS is a Linux-style data storage service***, accessible via SFTP from an RCOS server. You can also access RCOS from an Artemis session, as RCOS is ‘mounted’ (appears as an accessible drive on) the Artemis HPC. Data can thus be easily moved between RCOS and Artemis using a variety of methods such as ‘cp’, ‘scp’, ‘rsync’ etc. However, RCOS is NOT network accessible. So if you have data on RDS that you need to access via an application on your local computer, RCOS cannot provide this. 
+***RCOS is a Linux-style data storage service***, accessible via SFTP from an RCOS server. You can also access RCOS from an Artemis session, as RCOS is ‘mounted’ (appears as an accessible drive) on the Artemis HPC. Data can thus be easily moved between RCOS and Artemis using a variety of methods such as ‘cp’, ‘scp’, ‘rsync’ etc. However, RCOS is not easily network accessible on Windows and OSX. So if you have data on RDS that you need to access via an application on your local computer, it can be harder to do this with RCOS. 
 
 ***Classic RDS*** is a Windows-style data storage service accessible as a network drive on Windows, Mac and Linux systems. Network accessibility is handy if you often access your RDS data locally. You can read RDS data into local applications, or easily drag and drop files between your local hard drive (or USB/external hard drive) and classic RDS. Transfer of data between ‘classic’ RDS and Artemis is more difficult, and thus not the recommended data storage option for you if you are a frequent HPC user or work with large datasets.
 
-There are clearly advantages and disadvantages to both. If you feel you need the flexibility of both, currently the best approach is to create two DashR projects, one with RCOS and one with ‘classic’ RDS. ICT will be implementing a more seamless RDS in the future.
+There are clearly advantages and disadvantages to both. If you feel you need the flexibility of both, currently the best approach is to create two DashR projects, one with RCOS and one with ‘classic’ RDS. ICT will be implementing a more seamless RDS in the future!
 
 # Practicing Data Transfer
 
 There are a lot of data transfer tools and tricks out there, and which you use depends on where you want to move to and from (eg from your local computer to Artemis, from Artemis to RDS, etc) as well as your own personal preferences. Today you will gain an understanding of how to choose a good method, and gain practice in some of these methods following a ‘case study’ approach. 
 
-**Case study***:You are an animal genetics (student/post-doc/professor – put on whichever 'hat' feels best!). You have performed some genome sequencing on a new dog sample which has an inherited disease, and need to analyse the data ASAP and send the results to your collaborator to present at a conference next week. The files you need are in assorted locations, but you need to get them all onto Artemis for processing. And of course, to back them all up onto the RDS!
+**Case study**:You are an animal genetics researcher (student/post-doc/professor). You have performed some genome sequencing on a new dog sample which has an inherited disease, and need to analyse the data ASAP and send the results to your collaborator to present at a conference next week. The files you need are in assorted locations, but you need to get them all on to Artemis for processing. And of course, back them all up on to the RDS!
 
 
 # Setup
 
-f you are not already connected to Artemis, please establish a connection now. Mac users can use their native terminal app, Windows users will need a shell emulator. Please see the software [setup instruction here]({{ page.root }}/setup) and the [Connecting to Artemis section here](https://sydney-informatics-hub.github.io/training.artemis.introhpc/01-intro/index.html)
+If you are not already connected to Artemis, please establish a connection now. Mac users can use their native terminal app, Windows users will need a shell emulator. Please see the software [setup instruction here]({{ page.root }}/setup) and the [Connecting to Artemis section here](https://sydney-informatics-hub.github.io/training.artemis.introhpc/01-intro/index.html)
 
 Even if you have your own Artemis and/or RDS account, please use our training unikeys/logins for the day. If you have not yet been assigned one, please let one of our staff know. These logins are
 
@@ -44,7 +44,7 @@ Even if you have your own Artemis and/or RDS account, please use our training un
 ict_hpctrain<N>
 ```
 
-where N is a number between 1 and 40. Each user today will have a different number, and be members of the same DashR project called ‘Training’.Note: whenever you see the angle brackets, this means “replace the brackets AND their contents with the relevant content to you”. Once you are connected to Artemis, make a directory for yourself to work in within the /project/Training directory. Call it something unique (not just “training”) and memorable. Please do not include spaces, and remember that CASE MATTERS very much on Linux systems. 
+where N is a number between 1 and 40. Each user today will have a different number, and be members of the same DashR project called ‘Training’. Note: whenever you see the angle brackets, this means “replace the brackets AND their contents with the relevant content to you”. Once you are connected to Artemis, make a directory for yourself to work in within the /project/Training directory. Call it something unique (not just “training”) and memorable. Please do not include spaces, and remember that CASE MATTERS very much on Linux systems. 
 
 Make your directory
 
@@ -65,7 +65,7 @@ cd /project/Training/<yourDirectoryName>
 
 Back to the case study... Since you haven’t run this kind of analysis before, your helpful collaborator has emailed you a ‘tar’ file (packaged directory) of scripts to use to analyse the data. 
 
-This file was emailed to you via Eventbrite. Please download the dogScripts.tar.gz file to your local computer for your email. Don’t unpack it yet. 
+This file was emailed to you via Eventbrite. Please download the dogScripts.tar.gz file to your local computer for your email. Don’t unpack it yet. You can also download it from here: https://cloudstor.aarnet.edu.au/plus/s/F5bB2g9Gemn1xMj
 
 This local file needs to be transferred to Artemis HPC. This can be done via a Graphical User Interface (GUI) tool (ie “point and click”) such as [FileZilla](https://filezilla-project.org/) or [WinSCP](https://winscp.net/eng/download.php), or via the command line. You may choose whichever method you prefer. Please note: if you choose to install FileZilla, ensure to UNSELECT the sneaky inclusion of ‘Avast Antivirus’ and ‘Opera Browser’ during the installation!
 
@@ -87,7 +87,7 @@ scp <user@host:file> <user@host:to>
 Since the file to be transferred is local, you do not need to include user@host. Run the below command to copy the scripts archive to your working directory on Artemis:
 
 ~~~
-scp dogScripts.tar.gz  ict_hpctrain<N>@hpc.sydney.edu.au:/ project/Training/<yourDirectoryName>
+scp dogScripts.tar.gz  ict_hpctrain<N>@hpc.sydney.edu.au:/project/Training/<yourDirectoryName>
 ~~~
 {: .bash}
  
@@ -118,7 +118,7 @@ In the ‘Password’ field, enter the training password.
 
 In the ‘Port’ field, you can leave it blank (default is 22).
 Then click ‘Quick connect’. 
-You will be prompted about saving passwords, you can choose whether or not to do this. When you are looged on, you should see the following message printed in the top panel
+You will be prompted about saving passwords, you can choose whether or not to do this. When you are logged on, you should see the following message printed in the top panel
 ~~~
 Status:    Directory listing of "/home/ict_hpctrain<N>" successful
 ~~~
@@ -127,7 +127,7 @@ Status:    Directory listing of "/home/ict_hpctrain<N>" successful
 
 <figure>
   <img src="{{ page.root }}/fig/filezilla.png" style="margin:10px;width:600px"/>
-  <figcaption> The left-most two panels display your local computer’s filesystem. The right two panels are your connection to the Artemis filesystem. You can navigate the directory tree by expanding the yellow folders with your mouse, or typing the full directory pathname into the “Local site” or “Remote site” fields. Note that Windows uses ‘\’ and Linux uses ‘/’ to separate directories. 
+  <figcaption> The left-most two panels display your local computer’s filesystem. The right two panels are your connection to the Artemis filesystem. You can navigate the directory tree by expanding the yellow folders with your mouse, or typing the full directory pathname into the “Local site” or “Remote site” fields. Note that Windows use ‘\’ and Linux uses ‘/’ to separate directories. 
 </figcaption>
 </figure><br>
 
@@ -185,9 +185,11 @@ gunzip cfa_ref_CanFam3.1_chr5.fa.gz
 
 While wget is very handy for small files, it poses some risks for larger files or large collections of files. Can you think of what these might be? 
 
- * Transfers will be aborted if internet or VPN connection is lost, or if your computer sleeps or is shut down, or if there is a network timeout
+ * Transfers will be aborted if internet or VPN connection is lost, or if your computer sleeps or is shut down, or if there is a network timeout.
+ 
  Can you think of a solution to this?
  * Run the transfer using ‘nohup’ or ‘screen’, or submit the transfer to the cluster using ‘qsub’. 
+ 
  Our next data transfer is a bit larger, so we will use a different method that is more robust.
 
 
@@ -196,7 +198,7 @@ While wget is very handy for small files, it poses some risks for larger files o
 
 The raw DNA sequence data for this analysis is hosted online. You could run wget in the foreground as we did for the last data transfer, but we won’t because the files are large. 
 
-We will instead ‘wrapper’ the wget commands in a PBS script, as you are now familiar with from this morning’s [Introduction to the Artemis HPC course](https://sydney-informatics-hub.github.io/training.artemis.introhpc/). We will submit them to a **dedicated data transfer queue** on Artemis called ***dtq*** which is exempt from fair share. This will be good news to those of you with big datasets to move around 😊 
+We will instead ‘wrap’ the wget commands in a PBS script, as you are now familiar with from this morning's [Introduction to the Artemis HPC course](https://sydney-informatics-hub.github.io/training.artemis.introhpc/). We will submit them to a **dedicated data transfer queue** on Artemis called ***dtq*** which is exempt from fair share. This will be good news to those of you with big datasets to move around 😊 
 
 View the script ```download.pbs``` with the ```cat``` command: 
 
@@ -280,7 +282,7 @@ Note that you have the same 3 job log files, like any normal job submitted to Ar
 
 # Transfer from RCOS to Artemis HPC and run a dependent compute job 
 
-You are just about to submit the analysis job when your supervisor calls you with the bad news that you’ve downloaded the wrong data! The sample you downloaded from the web has already been processed, the new data is actually on RCOS! Since it’s getting late on a Friday and you really just want to submit this analysis and go home without having to wait for another download to complete, you use ***a handy feature of PBS Pro that allows you to ‘chain’ jobs to other jobs***, so that one only submits when the dependent job finishes with an **exit status*** of 0.
+You are just about to submit the analysis job when your supervisor calls you with the bad news that you’ve downloaded the wrong data! The sample you downloaded from the web has already been processed, the new data is actually on RCOS! Since it’s getting late on a Friday and you really just want to submit this analysis and go home without having to wait for another download to complete, you use a handy feature of PBS Pro that allows you to ‘chain’ jobs to other jobs, so that one only submits when the dependent job finishes with an **exit status** of 0.
 
 Jobs are chained together by including the following on your qsub command line: 
 
@@ -296,14 +298,14 @@ A job can depend on multiple jobs, using the syntax:
 
 The process is to submit the first job, then submit the second job including the jobID of the first job as the argument to ‘depend’. We will now use this method to transfer the correct raw data from RCOS to Artemis, and submit the analysis job to run when the data transfer completes. 
 
-The data we need is in the ```Training``` RCOS space in a directory called ```Dog_disease/Data```. The script we want to run when the data is transferred is called ‘map.pbs’. You don’t need to make any changes to this script, although you may wish to change the job name to clearly identify your job in the queue.  View the script with the ```cat``` command: 
+The data we need is in the ```Training``` RCOS space in a directory called ```Dog_disease/Data```. The script we want to run when the data is transferred is called ```map.pbs```. You don’t need to make any changes to this script, although you may wish to change the job name to clearly identify your job in the queue.  View the script with the ```cat``` command: 
 
 ~~~
 cat map.pbs 
 ~~~
 {: .bash}
 
-Note the line ```cd $PBS_O_WORKDIR``` . The analysis command ```bwa mem``` looks for the input files in the present working directory, and since PBS considers this to be your HOME directory, you need to ensure bwa can find the right files. This can be done using ‘cd’ to your present working directory as we have here, or else you need to include full pathnames to the input and output files. There are pros and cons to each method, but we have used ```cd``` for simplicity here. So ensure you are in the right directory when you submit the job to PBS, or else it will fail! 
+Note the line ```cd $PBS_O_WORKDIR``` . The analysis command ```bwa mem``` looks for the input files in the present working directory, and since PBS considers this to be your HOME directory, you need to ensure bwa can find the right files. This can be done using ```cd``` to your present working directory as we have here, or else you need to include full pathnames to the input and output files. There are pros and cons to each method, but we have used ```cd``` for simplicity here. So ensure you are in the right directory when you submit the job to PBS, or else it will fail! 
 
 Submit the data transfer job: 
 
@@ -327,7 +329,7 @@ qsub -W depend=afterok:<jobID> map.pbs
 {: .bash}
  
 
-```pwd``` command means "present working directory". You could type the full pathname of your directory, but this is easier 😊. ***Dt-script does not accept the ```.``` abbreviation for ‘this directory’. ***
+```pwd``` command means "print working directory". You could type the full pathname of your directory, but this is easier 😊. ***Dt-script does not accept the ```.``` abbreviation for ‘this directory’. ***
 
 
 
@@ -352,7 +354,7 @@ Pretty neat right? A very flexible and time-saving trick!
 
 # Transfer from Artemis HPC to RCOS: Backup project! 
 
-It’s great practice to routinely back up your Artemis project (whether the data be in /project or /scratch) to RCOS on a regular basis (ideally, after every day you’ve worked on the project). This is made so simple with dt-script, there is no excuse not to 😊 
+It is great practice to routinely back up your Artemis project (whether the data be in /project or /scratch) to RCOS on a regular basis (ideally, after every day you have worked on the project). This is made so simple with dt-script, there is no excuse not to 😊 
 
 To backup an ENTIRE project, you can simply run: 
 
@@ -361,7 +363,7 @@ dt-script -P <Project> -f /project/<Project> -t /rds/PRJ-<Project>
 ~~~
 {: .bash}
 
-Today you want to back up only your working directory, to your personal location on RCOS. Since many of you do/will have many colleagues working in the same Artemis project as you, this may be more applicable at times. You don’t need to first create the destination directory on RCOS, because ‘rsync’ makes precise use of trailing slashes in directory paths to make or not make new directory levels. If we leave the trailing slash from the source (our working directory) it will automatically create that directory for us on the destination, if that directory doesn’t exist. See ```man rsync``` for more information on this behavior. 
+Today you want to back up only your working directory, to your personal location on RCOS. Since many of you do/will have many colleagues working in the same Artemis project as you, this may be more applicable at times. You do not need to first create the destination directory on RCOS, because ‘rsync’ makes precise use of trailing slashes in directory paths to make or not make new directory levels. If we leave the trailing slash from the source (our working directory) it will automatically create that directory for us on the destination, if that directory doesn’t exist. See ```man rsync``` for more information on this behavior. 
 
  So to back up your working directory for today, make sure you are situated within the directory containing the data to backup (so that you can make use of `pwd` shortcut, which omits the trailing slash), then run: 
 
