@@ -462,7 +462,7 @@ Just as we accessed Artemis through the FileZilla interface earlier, we can like
 
 From external to university network:
 ```
-rcos sydney.edu.au 
+rcos.sydney.edu.au 
 ```
 
 From internal to university network:
