@@ -269,7 +269,7 @@ and others. Run ```dt-script -h``` for a full list.
 Your collaborator has placed the reference files needed in the ```Training``` RCOS space in a directory called ```Dog_disease/Ref```. To get these files into your current working directory for today, run the following command: 
 
 ~~~
-dt-script -N getRef<yourName> -P Training -ncpus 1 -m 1gb -w 00:05:00 -f /rds/PRJ-Training/Dog_disease/Ref/ -t /project/Training/<yourDirectoryName>/ 
+dt-script -P Training -f /rds/PRJ-Training/Dog_disease/Ref/ -t /project/Training/<yourDirectoryName>/ 
 ~~~
 {: .bash}
 
@@ -351,21 +351,13 @@ Note that the map job shows status ```H``` (held). It will remain ‘held’ unt
 Pretty neat right? A very flexible and time-saving trick! 
 
 
-
 # Transfer from Artemis HPC to RCOS: Backup project! 
 
 It is great practice to routinely back up your Artemis project (whether the data be in /project or /scratch) to RCOS on a regular basis (ideally, after every day you have worked on the project). This is made so simple with dt-script, there is no excuse not to 😊 
 
-To backup an ENTIRE project, you can simply run: 
+Today you want to back up your working directory, to your personal location on RCOS. Since many of you do/will have many colleagues working in the same Artemis project as you, this may be more applicable at times than backing up an entire project folder. You do not need to first create the destination directory on RCOS, because ‘rsync’ makes precise use of trailing slashes in directory paths to make or not make new directory levels. If we leave the trailing slash from the source (our working directory) it will automatically create that directory for us on the destination if that directory doesn’t exist. See ```man rsync``` for more information on this behavior. 
 
-~~~
-dt-script -P <Project> -f /project/<Project> -t /rds/PRJ-<Project> 
-~~~
-{: .bash}
-
-Today you want to back up only your working directory, to your personal location on RCOS. Since many of you do/will have many colleagues working in the same Artemis project as you, this may be more applicable at times. You do not need to first create the destination directory on RCOS, because ‘rsync’ makes precise use of trailing slashes in directory paths to make or not make new directory levels. If we leave the trailing slash from the source (our working directory) it will automatically create that directory for us on the destination, if that directory doesn’t exist. See ```man rsync``` for more information on this behavior. 
-
- So to back up your working directory for today, make sure you are situated within the directory containing the data to backup (so that you can make use of `pwd` shortcut, which omits the trailing slash), then run: 
+To back up your working directory for today, make sure you are situated within the directory containing the data to backup (so that you can make use of `pwd` shortcut, which omits the trailing slash), then run: 
 
 ~~~
 dt-script -P Training -N backup<yourName> -f `pwd` -t /rds/PRJ-Training 
@@ -374,87 +366,7 @@ dt-script -P Training -N backup<yourName> -f `pwd` -t /rds/PRJ-Training
 
 Backup sorted! 
 
-Check using ```ls -l``` that your data has been backed up on RCOS. Note that the time stamps are preserved. 
-
-
-
-# Transfer from Artemis to ‘classic RDS’ 
-
-Your collaborator wants you to bring a local copy of the data to the conference next week. You don’t have much space for this massive dataset on your laptop, so you back it up to ‘classic RDS’ so you can easily show the data via your mapped network drive. 
-
-This part will be demonstrated (you do not have to perform this). 
-
-To map ‘classic RDS’ network drive, follow the instructions here. Note that the path will differ depending on when your RDS was created.
-
-To transfer data between Artemis and classic RDS, we use an ftp-like command line tool called ‘smbclient’. FileZilla could be used, however this is not recommended (especially for large files) as the transfer is bottlenecked by your local computer. Smbclient performs a direct transfer. 
-
-To connect to smbclient: 
-
-~~~
-smbclient <path> -U <unikey> -W SHARED 
-~~~
-{: .bash}
-
-In this case: 
-
-~~~
-smbclient //research-data.shared.sydney.edu.au/RDS-01 -U ict_hpctrain1 -W SHARED 
-~~~
-{: .bash}
-
-<figure>
-  <img src="{{ page.root }}/fig/smbterm.png" style="margin:10px;width:600px"/>
-  <figcaption> Caption 
-</figcaption>
-</figure><br>
- 
-
-Note the different command prompt ```\>``` instead of ```$```. Some Linux commands work (eg ```ls```, ```pwd```, ```cd```, ```mkdir```). 
-
-By default, ‘prompting’ (the system prompts you between transferring each file and awaits ‘Y’ or ‘N’ input) is ON. By default, ‘recurse’ (recursively copy directories) is OFF. 
-
-Since we want to copy our Output directory to classic RDS, we should turn prompt OFF and recurse ON: 
-
-~~~
-prompt off 
-recurse on 
-~~~
-{: .bash}
-
-Then make a directory for the dataset: 
-
-~~~
-mkdir Dog_disease 
-
-cd Dog_disease 
-~~~
-{: .bash}
-
-Then transfer the Output directory and its contents: 
-
-~~~
-mput Output 
-~~~
-{: .bash}
-
-
-<figure>
-  <img src="{{ page.root }}/fig/smbterm2.png" style="margin:10px;width:600px"/>
-  <figcaption> Caption 
-</figcaption>
-</figure><br>
-
-
-The output data can now be readily accessed via the local file explorer under the mapped drive, without having to save the data onto your local hard drive 😊 
-
-<figure>
-  <img src="{{ page.root }}/fig/windowsRDS.png" style="margin:10px;width:600px"/>
-  <figcaption> Caption 
-</figcaption>
-</figure><br>
-
-Single files can be transferred from Artemis to classic RDS with ```put```. Single files can be transferred from classic RDS to Artemis with ```get```, or multiple files with ```mget```. To log out of smblicent, enter ```control + C```.
-
+Check using ```ls /rds/PRJ-Training``` that your data has been backed up on RCOS. Note that the time stamps are preserved. 
 
 # Transfer from RCOS to local with FileZilla 
 
@@ -495,7 +407,6 @@ The username, password and port are as before. Trust the host if prompted.
 </figure><br>
 
 
-
 Once successfully connected, notice that the ```Remote site``` indicates you are situated in ```/home/<yourUnikey>````. Please DO NOT USE THIS LOCATION TO STORE DATA! Change to the correct directory by entering in the ‘Remote site’ field: 
 
 ```
@@ -503,6 +414,117 @@ Once successfully connected, notice that the ```Remote site``` indicates you are
 ```
 
 Expand out the directory tree to find your directory that was created earlier when you used ‘dt-script’ to backup. If you wanted to transfer any of these files to your local computer, you could do so by either drag and drop/right click download/double click. 
+
+
+
+# Transfer from Artemis to ‘classic RDS’ 
+
+Your collaborator wants you to bring a local copy of the data to the conference next week. You don’t have much space for this massive dataset on your laptop, so you back it up to ‘classic RDS’ so you can easily show the data via your mapped network drive. 
+
+This part will be demonstrated (you do not have to perform this). 
+
+To map ‘classic RDS’ network drive, follow the instructions here. Note that the path will differ depending on when your RDS was created.
+
+To transfer data between Artemis and classic RDS, we use an ftp-like command line tool called ‘smbclient’. FileZilla could be used, however this is not recommended (especially for large files) as the transfer is bottlenecked by your local computer. Smbclient performs a direct transfer. 
+
+To connect to smbclient: 
+
+~~~
+smbclient <path> -U <unikey> -W SHARED 
+~~~
+{: .bash}
+
+In this case: 
+
+~~~
+smbclient //research-data-2.shared.sydney.edu.au/RDS-02 -U ict_hpctrain1 -W SHARED 
+~~~
+{: .bash}
+
+<figure>
+  <img src="{{ page.root }}/fig/smbterm.png" style="margin:10px;width:600px"/>
+  <figcaption> Caption 
+</figcaption>
+</figure><br>
+ 
+
+Note the different command prompt ```\>``` instead of ```$```. Some Linux commands work (eg ```ls```, ```pwd```, ```cd```, ```mkdir```). 
+
+By default, ‘prompting’ (the system prompts you between transferring each file and awaits ‘Y’ or ‘N’ input) is ON. By default, ‘recurse’ (recursively copy directories) is OFF. 
+
+Since we want to copy our Output directory to classic RDS, we should turn prompt OFF and recurse ON: 
+
+~~~
+prompt off 
+recurse on 
+~~~
+{: .bash}
+
+You can list out the "remote" directories/files
+~~~
+ls
+~~~
+{: .bash}
+
+And you can list out the "local" directories/files
+~~~
+ls
+~~~
+{: .bash}
+
+Note: using the ```!``` in front of any normal linux expression will exectue the command on the local host machine.
+
+Now, move into one of our project folders and make a directory for the dataset: 
+
+~~~
+cd PRJ-sjkClassic
+
+mkdir Dog_disease 
+
+cd Dog_disease 
+~~~
+{: .bash}
+
+Then transfer the Output directory and its contents: 
+
+~~~
+mput Output 
+~~~
+{: .bash}
+
+
+<figure>
+  <img src="{{ page.root }}/fig/smbterm2.png" style="margin:10px;width:600px"/>
+  <figcaption> Caption 
+</figcaption>
+</figure><br>
+
+
+The output data can now be readily accessed via the local file explorer under the mapped drive, without having to save the data onto your local hard drive 😊 
+
+Single files can be transferred from Artemis to classic RDS with ```put```. Single files can be transferred from classic RDS to Artemis with ```get```, or multiple files with ```mget```. To log out of smblicent, enter ```control + C```.
+
+
+# Mounting ‘classic RDS’ on your local machine.
+Dependng on your operating system there are few ways to mount the classic RDS as a network drive.
+
+The steps wor Windoes 10 are:
+
+* Click on This PC from the Desktop.
+* On the Computer tab, click on Map network drive in the Network section.
+* Choose a drive letter and enter your Classic RDS path: \\research-data-2.shared.sydney.edu.au\RDS-02.
+* Enter SHARED\<UniKey> and your password.
+* Click Finish.
+
+<figure>
+  <img src="{{ page.root }}/fig/windowsRDS.png" style="margin:10px;width:600px"/>
+  <figcaption> Caption 
+</figcaption>
+</figure><br>
+
+For a full discussion, and mounting instructions for Windows/Mac OSX, and Linux, see here:
+https://sydneyuni.atlassian.net/wiki/spaces/RC/pages/229146744/Classic+RDS
+
 
 
 # Wrap up 
