@@ -126,7 +126,7 @@ Status:    Directory listing of "/home/ict_hpctrain<N>" successful
 
 
 <figure>
-  <img src="{{ page.root }}/fig/filezilla.png" style="margin:10px;width:600px"/>
+  <img src="{{ page.root }}/fig/pic03_filezilla.PNG" style="margin:10px;width:600px"/>
   <figcaption> The left-most two panels display your local computer’s filesystem. The right two panels are your connection to the Artemis filesystem. You can navigate the directory tree by expanding the yellow folders with your mouse, or typing the full directory pathname into the “Local site” or “Remote site” fields. Note that Windows use ‘\’ and Linux uses ‘/’ to separate directories. 
 </figcaption>
 </figure><br>
@@ -169,6 +169,10 @@ You need to get a reference file from an online database to use as input for you
 
 In a web browser, go to [https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_familiaris/CHR_05/](https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_familiaris/CHR_05/) . Right click on the file ```cfa_ref_CanFam3.1_chr5.fa.gz``` then select “Copy link address” or “Copy link location”. 
 
+<figure>
+  <img src="{{ page.root }}/fig/pic04_web.png" style="margin:10px;width:600px"/>
+</figure><br>
+
 Within your Artemis terminal, enter the ```wget``` command, then after a space, paste the URL:
 
 ~~~
@@ -182,6 +186,11 @@ Unzip the file:
 gunzip cfa_ref_CanFam3.1_chr5.fa.gz 
 ~~~
 {: .bash}
+
+
+<figure>
+  <img src="{{ page.root }}/fig/pic05_wget.png" style="margin:10px;width:600px"/>
+</figure><br>
 
 While wget is very handy for small files, it poses some risks for larger files or large collections of files. Can you think of what these might be? 
 
@@ -207,6 +216,10 @@ cat download.pbs
 ~~~
 {: .bash}
 
+<figure>
+  <img src="{{ page.root }}/fig/pic06_download.png" style="margin:10px;width:600px"/>
+</figure><br>
+
 You don’t need to change anything in this script, but note that we have specified to run the job on the ***dtq*** queue using the ```-q``` flag. 
 
 Also note that the data will be downloaded to your current working directory (ie, where you are situated when you run the ```qsub``` command). This is because the script changes you to that directory using the PBS environment variable ***$PBS_O_WORKDIR***. If you are not in the correct directory to receive your download, change there now, then submit the transfer with: 
@@ -230,10 +243,13 @@ qstat -x <jobID>
 ~~~
 {: .bash}
 
-Once your transfer job has completed, confirm that you have the expected files (eg ```ls -l```). 
+Once your transfer job has completed, confirm that you have the expected files (eg ```ls```). 
 
 Note that you have the same 3 job log files, like any normal job submitted to Artemis with ```qsub```. 
 
+<figure>
+  <img src="{{ page.root }}/fig/pic07_jobfiles.png" style="margin:10px;width:600px"/>
+</figure><br>
 
 
 # Transfer from RCOS to Artemis HPC: a safer, easier way with ‘dt-script’ 
@@ -332,13 +348,6 @@ qsub -W depend=afterok:<jobID> map.pbs
 ```pwd``` command means "print working directory". You could type the full pathname of your directory, but this is easier 😊. ***Dt-script does not accept the ```.``` abbreviation for ‘this directory’. ***
 
 
-
-<figure>
-  <img src="{{ page.root }}/fig/pwdterm.png" style="margin:10px;width:600px"/>
-  <figcaption> Caption 
-</figcaption>
-</figure><br>
-
 Check job status: 
 
 ~~~
@@ -347,6 +356,10 @@ qstat -u ict_hpctrain<N>
 {: .bash}
 
 Note that the map job shows status ```H``` (held). It will remain ‘held’ until the ‘getData’ job completes. If ‘getData’ completes successfully, ‘map’ job will enter the queue (it may run right away and show ```R``` status, or it may queue for a while and show ```Q``` status). If ‘getData’ does not complete successfully (ie returns a non-zero exit status) then ‘map’ will not run at all.
+
+<figure>
+  <img src="{{ page.root }}/fig/pic08_depend.png" style="margin:10px;width:600px"/>
+</figure><br>
 
 Pretty neat right? A very flexible and time-saving trick! 
 
@@ -517,9 +530,7 @@ The steps wor Windoes 10 are:
 * Click Finish.
 
 <figure>
-  <img src="{{ page.root }}/fig/windowsRDS.png" style="margin:10px;width:600px"/>
-  <figcaption> Caption 
-</figcaption>
+  <img src="{{ page.root }}/fig/pic09_classicmount.png" style="margin:10px;width:600px"/>
 </figure><br>
 
 For a full discussion, and mounting instructions for Windows/Mac OSX, and Linux, see here:
