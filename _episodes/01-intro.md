@@ -1,6 +1,6 @@
 ---
 title: "Data transfer and RDS for HPC"
-teaching: 120
+teaching: 20
 exercises: 0
 questions:
 - "What is the Reasearch Data Store?"
