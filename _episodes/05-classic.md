@@ -66,7 +66,7 @@ mput Output
 
 
 <figure>
-  <img src="{{ page.root }}/fig/pic10_smb.png" style="margin:10px;width:600px"/>
+  <img src="{{ page.root }}/fig/pic11_smb.png" style="margin:10px;width:600px"/>
 </figure><br>
 
 
