@@ -1,11 +1,11 @@
 ---
 title: "Transfer from LOCAL to Artemis HPC"
-teaching: 10
+teaching: 20
 objectives:
-- "Leanr to move data between local machine and remote HPC environemnt"
+- "Learn to move data between local machine and remote HPC environemnt"
 keypoints:
 - "Use scp"
-- "Use GUI like Filezilla
+- "Use GUI like Filezilla"
 ---
 
 # Transfer from LOCAL to Artemis HPC
