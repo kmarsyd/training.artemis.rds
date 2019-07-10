@@ -2,7 +2,7 @@
 title: "Summary"
 teaching: 5
 objectives:
-- "Summarise
+- "Summarise RDS and HPC"
 keypoints:
 - "Lots of tools and ways to interface HPC/RDS"
 - "Use whatever works for you!"
