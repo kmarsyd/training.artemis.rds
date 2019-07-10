@@ -62,7 +62,7 @@ cat download.pbs
 {: .bash}
 
 <figure>
-  <img src="{{ page.root }}/fig/pic06_download.png" style="margin:10px;width:600px"/>
+  <img src="{{ page.root }}/fig/pic06_downloadpbs.png" style="margin:10px;width:600px"/>
 </figure><br>
 
 You don’t need to change anything in this script, but note that we have specified to run the job on the ***dtq*** queue using the ```-q``` flag. 
