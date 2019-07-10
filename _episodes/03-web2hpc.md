@@ -1,6 +1,6 @@
 ---
 title: "Transfer from WEB to Artemis HPC"
-teaching: 10
+teaching: 20
 objectives:
 - "Learn to pull data directly from the internet to HPC"
 keypoints:
