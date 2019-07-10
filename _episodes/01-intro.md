@@ -97,7 +97,6 @@ Then unpack the archive, move the scripts, and delete the archive and empty dire
 tar -zxvf dogScripts.tar.gz 
 mv dogScripts/* . 
 rmdir dogScripts 
-rm dogScripts.tar.gz 
 ~~~
 {: .bash}
 
@@ -156,7 +155,6 @@ Now go back to your terminal connected to Artemis and run the following commands
 tar -zxvf dogScripts.tar.gz 
 mv dogScripts/* . 
 rmdir dogScripts 
-rm dogScripts.tar.gz
 ~~~
 {: .bash}
 
@@ -314,7 +312,7 @@ A job can depend on multiple jobs, using the syntax:
 
 The process is to submit the first job, then submit the second job including the jobID of the first job as the argument to ‘depend’. We will now use this method to transfer the correct raw data from RCOS to Artemis, and submit the analysis job to run when the data transfer completes. 
 
-The data we need is in the ```Training``` RCOS space in a directory called ```Dog_disease/Data```. The script we want to run when the data is transferred is called ```map.pbs```. You don’t need to make any changes to this script, although you may wish to change the job name to clearly identify your job in the queue.  View the script with the ```cat``` command: 
+The data we need is in the ```PRJ-Training``` RCOS space in a directory called ```/rds/PRJ-Training/Dog_disease/Data```. The script we want to run when the data is transferred is called ```map.pbs```. You don’t need to make any changes to this script, although you may wish to change the job name to clearly identify your job in the queue.  View the script with the ```cat``` command: 
 
 ~~~
 cat map.pbs 
@@ -392,42 +390,32 @@ rcos.sydney.edu.au
 
 From internal to university network:
 ```
-rcos-int.sydney.edu.au (internal) 
+rcos-int.sydney.edu.au  
 ```
- 
 
 Open FileZilla and in the host field enter: 
-
-```
+~~~
 sftp://rcos-int.sydney.edu.au 
-```
+~~~
+{: .bash}
  
 
 The username, password and port are as before. Trust the host if prompted. 
 
+Once successfully connected, notice that the ```Remote site``` indicates you are situated in ```/home/<yourUnikey>```. 
 
-<figure>
-  <img src="{{ page.root }}/fig/filezilla2.png" style="margin:10px;width:600px"/>
-  <figcaption> Caption 
-</figcaption>
-</figure><br>
+Please DO NOT USE THIS LOCATION TO STORE DATA! Change to the correct directory by entering in the ‘Remote site’ field: 
 
-
-<figure>
-  <img src="{{ page.root }}/fig/unknownhost.png" style="margin:10px;width:600px"/>
-  <figcaption> Caption 
-</figcaption>
-</figure><br>
-
-
-Once successfully connected, notice that the ```Remote site``` indicates you are situated in ```/home/<yourUnikey>````. Please DO NOT USE THIS LOCATION TO STORE DATA! Change to the correct directory by entering in the ‘Remote site’ field: 
-
-```
+~~~
 /rds/PRJ-Training 
-```
+~~~
+{: .bash}
 
 Expand out the directory tree to find your directory that was created earlier when you used ‘dt-script’ to backup. If you wanted to transfer any of these files to your local computer, you could do so by either drag and drop/right click download/double click. 
 
+<figure>
+  <img src="{{ page.root }}/fig/pic10_rcosfilezilla.png" style="margin:10px;width:600px"/>
+</figure><br>
 
 
 # Transfer from Artemis to ‘classic RDS’ 
@@ -440,12 +428,11 @@ To map ‘classic RDS’ network drive, follow the instructions here. Note that 
 
 To transfer data between Artemis and classic RDS, we use an ftp-like command line tool called ‘smbclient’. FileZilla could be used, however this is not recommended (especially for large files) as the transfer is bottlenecked by your local computer. Smbclient performs a direct transfer. 
 
-To connect to smbclient: 
+In general, to connect with smbclient use the command: 
 
-~~~
+```
 smbclient <path> -U <unikey> -W SHARED 
-~~~
-{: .bash}
+```
 
 In this case: 
 
@@ -454,14 +441,8 @@ smbclient //research-data-2.shared.sydney.edu.au/RDS-02 -U ict_hpctrain1 -W SHAR
 ~~~
 {: .bash}
 
-<figure>
-  <img src="{{ page.root }}/fig/smbterm.png" style="margin:10px;width:600px"/>
-  <figcaption> Caption 
-</figcaption>
-</figure><br>
- 
 
-Note the different command prompt ```\>``` instead of ```$```. Some Linux commands work (eg ```ls```, ```pwd```, ```cd```, ```mkdir```). 
+Note: the different command prompt ```\>``` instead of ```$```. Some Linux commands work (eg ```ls```, ```pwd```, ```cd```, ```mkdir```). Using the ```!``` in front of any normal linux expression will exectue the command on the "local/host" machine, otherwise the commands are executed on the "remote" machine.
 
 By default, ‘prompting’ (the system prompts you between transferring each file and awaits ‘Y’ or ‘N’ input) is ON. By default, ‘recurse’ (recursively copy directories) is OFF. 
 
@@ -473,19 +454,6 @@ recurse on
 ~~~
 {: .bash}
 
-You can list out the "remote" directories/files
-~~~
-ls
-~~~
-{: .bash}
-
-And you can list out the "local" directories/files
-~~~
-ls
-~~~
-{: .bash}
-
-Note: using the ```!``` in front of any normal linux expression will exectue the command on the local host machine.
 
 Now, move into one of our project folders and make a directory for the dataset: 
 
@@ -507,9 +475,7 @@ mput Output
 
 
 <figure>
-  <img src="{{ page.root }}/fig/smbterm2.png" style="margin:10px;width:600px"/>
-  <figcaption> Caption 
-</figcaption>
+  <img src="{{ page.root }}/fig/pic10_smb.png" style="margin:10px;width:600px"/>
 </figure><br>
 
 
@@ -518,7 +484,7 @@ The output data can now be readily accessed via the local file explorer under th
 Single files can be transferred from Artemis to classic RDS with ```put```. Single files can be transferred from classic RDS to Artemis with ```get```, or multiple files with ```mget```. To log out of smblicent, enter ```control + C```.
 
 
-# Mounting ‘classic RDS’ on your local machine.
+## Mounting ‘classic RDS’ on your local machine.
 Dependng on your operating system there are few ways to mount the classic RDS as a network drive.
 
 The steps wor Windoes 10 are:
@@ -537,6 +503,16 @@ For a full discussion, and mounting instructions for Windows/Mac OSX, and Linux,
 https://sydneyuni.atlassian.net/wiki/spaces/RC/pages/229146744/Classic+RDS
 
 
+# Catch up summary
+
+If you get lost at all, these few lines should get all the data required for any of the steps.
+
+wget -O dogScripts.tar.gz https://cloudstor.aarnet.edu.au/plus/s/F5bB2g9Gemn1xMj/download
+tar -zxvf dogScripts.tar.gz 
+mv dogScripts/* .
+
+wget https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_familiaris/CHR_05/cfa_ref_CanFam3.1_chr5.fa.gz
+gunzip cfa_ref_CanFam3.1_chr5.fa.gz 
 
 # Wrap up 
 
