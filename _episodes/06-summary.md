@@ -27,6 +27,9 @@ Please feel free to contact us with any questions: [sih.info@sydney.edu.au](mail
 
 We welcome your feedback, please complete the brief survey: [https://goo.gl/aMJSA7](https://goo.gl/aMJSA7)
 
+Check out the online documentation for more information:
+[https://sydneyuni.atlassian.net/wiki/spaces/RC/overview](https://sydneyuni.atlassian.net/wiki/spaces/RC/overview)
+
 ***Reminder: Artemis is not backed up!***
 
 <figure>
