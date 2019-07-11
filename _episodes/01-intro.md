@@ -27,6 +27,10 @@ When you fill in a DashR form, if you select Artemis HPC access for your project
 
 There are clearly advantages and disadvantages to both. If you feel you need the flexibility of both, currently the best approach is to create two DashR projects, one with RCOS and one with ‘classic’ RDS. ICT will be implementing a more seamless RDS in the future!
 
+Check out the online documentation for more information:
+[https://sydneyuni.atlassian.net/wiki/spaces/RC/overview](https://sydneyuni.atlassian.net/wiki/spaces/RC/overview)
+
+
 # Practicing Data Transfer
 
 There are a lot of data transfer tools and tricks out there, and which you use depends on where you want to move to and from (eg from your local computer to Artemis, from Artemis to RDS, etc) as well as your own personal preferences. Today you will gain an understanding of how to choose a good method, and gain practice in some of these methods following a ‘case study’ approach. 
