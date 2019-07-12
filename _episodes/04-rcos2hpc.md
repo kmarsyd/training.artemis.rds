@@ -81,18 +81,6 @@ A job can depend on multiple jobs, using the syntax:
 
 The process is to submit the first job, then submit the second job including the jobID of the first job as the argument to ‘depend’. We will now use this method to transfer the correct raw data from RCOS to Artemis, and submit the analysis job to run when the data transfer completes. 
 
- <!–– The data we need is in the ```PRJ-Training``` RCOS space in a directory called ```/rds/PRJ-Training/Dog_disease/Data```. 
- 
- Submit the data transfer job: 
-
-~~~
-dt-script -N getData<yourName> -P Training -ncpus 1 -m 1gb -w 00:10:00 -f /rds/PRJ-Training/Dog_disease/Data/ -t `pwd` 
-~~~
-{: .bash}
-
-```pwd``` command means "print working directory". You could type the full pathname of your directory, but this is easier 😊. ***Dt-script does not accept the ```.``` abbreviation for ‘this directory’. ***
-
-––>
 
 The data we need has been re-uploaded, so we can re-download it with the ```download.pbs``` jobscript.
 
