@@ -65,7 +65,7 @@ Note that you have the same 3 job log files, like any normal job submitted to Ar
 
 # Dependent compute jobs
 
-You are just about to submit the analysis job when your supervisor calls you with the bad news that you’ve downloaded the wrong data! The sample you downloaded from the web has already been processed, the new data is actually on RCOS! Since it’s getting late on a Friday and you really just want to submit this analysis and go home without having to wait for another download to complete, you use a handy feature of PBS Pro that allows you to ‘chain’ jobs to other jobs, so that one only submits when the dependent job finishes with an **exit status** of 0.
+You are just about to submit the analysis job when your supervisor calls you with the bad news that you’ve downloaded the wrong data! The sample you downloaded from the web has already been processed, the new data is actually on elsewhere! Since it’s getting late on a Friday and you really just want to submit this analysis and go home without having to wait for another download to complete, you use a handy feature of PBS Pro that allows you to ‘chain’ jobs to other jobs, so that one only submits when the dependent job finishes with an **exit status** of 0.
 
 Jobs are chained together by including the following on your qsub command line: 
 
@@ -81,7 +81,21 @@ A job can depend on multiple jobs, using the syntax:
 
 The process is to submit the first job, then submit the second job including the jobID of the first job as the argument to ‘depend’. We will now use this method to transfer the correct raw data from RCOS to Artemis, and submit the analysis job to run when the data transfer completes. 
 
-The data we need is in the ```PRJ-Training``` RCOS space in a directory called ```/rds/PRJ-Training/Dog_disease/Data```. The script we want to run when the data is transferred is called ```map.pbs```. You don’t need to make any changes to this script, although you may wish to change the job name to clearly identify your job in the queue.  View the script with the ```cat``` command: 
+ <!–– The data we need is in the ```PRJ-Training``` RCOS space in a directory called ```/rds/PRJ-Training/Dog_disease/Data```. 
+ 
+ Submit the data transfer job: 
+
+~~~
+dt-script -N getData<yourName> -P Training -ncpus 1 -m 1gb -w 00:10:00 -f /rds/PRJ-Training/Dog_disease/Data/ -t `pwd` 
+~~~
+{: .bash}
+
+```pwd``` command means "print working directory". You could type the full pathname of your directory, but this is easier 😊. ***Dt-script does not accept the ```.``` abbreviation for ‘this directory’. ***
+-->
+
+The data we need has been re-uploaded, so we can redownload it with the ```download.pbs``` command.
+
+The script we want to run when the data is transferred is called ```map.pbs```. You don’t need to make any changes to this script, although you may wish to change the job name to clearly identify your job in the queue.  View the script with the ```cat``` command: 
 
 ~~~
 cat map.pbs 
@@ -93,7 +107,7 @@ Note the line ```cd $PBS_O_WORKDIR``` . The analysis command ```bwa mem``` looks
 Submit the data transfer job: 
 
 ~~~
-dt-script -N getData<yourName> -P Training -ncpus 1 -m 1gb -w 00:10:00 -f /rds/PRJ-Training/Dog_disease/Data/ -t `pwd` 
+qsub download.pbs
 ~~~
 {: .bash}
 
@@ -104,16 +118,13 @@ Output:
 ~~~
 {: .output}
 
-Note the job ID, you will feed this into the next command line: 
+Note the job ID, you will feed this into the next command line, where we submit the ```map.pbs``` job: 
 
 ~~~
 qsub -W depend=afterok:<jobID> map.pbs 
 ~~~
 {: .bash}
  
-
-```pwd``` command means "print working directory". You could type the full pathname of your directory, but this is easier 😊. ***Dt-script does not accept the ```.``` abbreviation for ‘this directory’. ***
-
 
 Check job status: 
 
