@@ -91,7 +91,8 @@ dt-script -N getData<yourName> -P Training -ncpus 1 -m 1gb -w 00:10:00 -f /rds/P
 {: .bash}
 
 ```pwd``` command means "print working directory". You could type the full pathname of your directory, but this is easier 😊. ***Dt-script does not accept the ```.``` abbreviation for ‘this directory’. ***
--->
+
+––>
 
 The data we need has been re-uploaded, so we can redownload it with the ```download.pbs``` command.
 
