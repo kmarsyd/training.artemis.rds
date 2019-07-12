@@ -94,9 +94,9 @@ dt-script -N getData<yourName> -P Training -ncpus 1 -m 1gb -w 00:10:00 -f /rds/P
 
 ––>
 
-The data we need has been re-uploaded, so we can redownload it with the ```download.pbs``` command.
+The data we need has been re-uploaded, so we can re-download it with the ```download.pbs``` jobscript.
 
-The script we want to run when the data is transferred is called ```map.pbs```. You don’t need to make any changes to this script, although you may wish to change the job name to clearly identify your job in the queue.  View the script with the ```cat``` command: 
+Then, the script we want to run when the data is transferred is called ```map.pbs```. You don’t need to make any changes to this script, although you may wish to change the job name to clearly identify your job in the queue.  View the script with the ```cat``` command: 
 
 ~~~
 cat map.pbs 
