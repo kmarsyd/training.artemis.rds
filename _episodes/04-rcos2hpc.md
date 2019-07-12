@@ -12,7 +12,7 @@ keypoints:
 - "Connect from local to RCOS"
 ---
 
-# Transfer from RCOS to Artemis HPC: and the ‘dt-script’ 
+# Transfer from RCOS to Artemis HPC 
 
 You now have scripts, raw data and a reference file. Your collaborator has informed you that the reference files also needs associated  ‘index files’ and that they have previously prepared these and saved them on RCOS. The Artemis compute nodes can’t read directly from RCOS. They may appear seamless, but they are actually different physical machines situated at opposite ends of Sydney! So these files need to be copied from RCOS to Artemis. 
 
@@ -21,9 +21,18 @@ What methods could you use to copy from RCOS to Artemis? Which do you think is t
  * ```cp``` is easy to use, but is subject to the same issues as running any command in the foreground: it is subject to termination if your session is lost 
 
  * ```mv``` same as above, but worse, since ‘mv’ removes the file on the source so you may lose your data altogether in the event of a prematurely aborted transfer! 
+ 
+Your collaborator has placed the reference files needed in the ```Training``` RCOS space in a directory called ```Dog_disease/Ref```. To get these files into your current working directory for today, you could run the following unsafe command:  
+~~~
+ cp -v /rds/PRJ-Training/Dog_disease/Ref/* /project/Training/<yourname>
+~~~
+{: .bash}
 
- * ```cp``` or ```rsync``` within a PBS script is safe and recommended, particularly ```rsync``` as it has more flexibility, eg retain timestamps and file permissions, "sync" a directory (only copy what is new or changed on the destination compared to the source), and more. 
 
+# The dt-script
+
+ * ```cp``` or ```rsync``` within a PBS script is safe and recommended, particularly ```rsync``` as it has more flexibility, eg retain timestamps and file permissions, "sync" a directory (only copy what is new or changed on the destination compared to the source), and more.  
+ 
 There is an even easier way! Our HPC’s management team have created a handy utility for us called ```dt-script```. This script (full path ```/usr/local/bin/dt-script``` for the interested) is a ‘wrapper’ for running ```rsync``` in a PBS script. It enables you to perform data transfers as a “one-liner” without the need for a script and the transfer is actually submitted to the data transfer nodes of the cluster (and not running in the foreground of your current terminal).
 
 The minimum syntax to run dt-script is: 
@@ -42,7 +51,7 @@ You can include additional arguments, such as:
 
 and others. Run ```dt-script -h``` for a full list.
 
-Your collaborator has placed the reference files needed in the ```Training``` RCOS space in a directory called ```Dog_disease/Ref```. To get these files into your current working directory for today, run the following command: 
+Your collaborator has placed the reference files needed in the ```Training``` RCOS space in a directory called ```Dog_disease/Ref```. To get these files safely into your current working directory for today, run the following command: 
 
 ~~~
 dt-script -P Training -f /rds/PRJ-Training/Dog_disease/Ref/ -t /project/Training/<yourDirectoryName>/ 
@@ -54,9 +63,7 @@ Once your transfer job has completed, confirm that you have the expected files (
 Note that you have the same 3 job log files, like any normal job submitted to Artemis with ```qsub```. 
 
 
-
-
-# Transfer from RCOS to Artemis HPC and run a dependent compute job 
+# Dependent compute jobs
 
 You are just about to submit the analysis job when your supervisor calls you with the bad news that you’ve downloaded the wrong data! The sample you downloaded from the web has already been processed, the new data is actually on RCOS! Since it’s getting late on a Friday and you really just want to submit this analysis and go home without having to wait for another download to complete, you use a handy feature of PBS Pro that allows you to ‘chain’ jobs to other jobs, so that one only submits when the dependent job finishes with an **exit status** of 0.
 
