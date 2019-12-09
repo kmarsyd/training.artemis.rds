@@ -1,8 +1,8 @@
 ---
 title: "Transfer from LOCAL to Artemis HPC"
 teaching: 20
-Excercises: 10
-Questions:
+excercises: 10
+questions:
 - "What tools can you use to copy data to a remote machine?"
 objectives:
 - "Learn to move data between local machine and remote HPC environemnt"
