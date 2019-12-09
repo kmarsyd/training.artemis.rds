@@ -1,11 +1,15 @@
 ---
 title: "Transfer from WEB to Artemis HPC"
-teaching: 20
+teaching: 10
+Exercises: 10
+Questions:
+- "What should you think about when transferring large datasets"
 objectives:
 - "Learn to pull data directly from the internet to HPC"
 keypoints:
 - "Use wget"
-- "Use batch dtq"
+- "Recall batch submission on Artemis"
+- "Use the dedicated data transfer queue, dtq"
 ---
 
 # Transfer from WEB to Artemis HPC
@@ -88,7 +92,7 @@ qstat -x <jobID>
 ~~~
 {: .bash}
 
-Once your transfer job has completed, confirm that you have the expected files (eg ```ls```). 
+Once your transfer job has completed, confirm that you have the expected files (e.g. ```ls```). 
 
 Note that you have the same 3 job log files, like any normal job submitted to Artemis with ```qsub```. 
 
