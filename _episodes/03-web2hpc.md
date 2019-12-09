@@ -3,7 +3,7 @@ title: "Transfer from WEB to Artemis HPC"
 teaching: 10
 exercises: 10
 questions:
-- "What should you think about when transferring large datasets"
+- "What should you think about when transferring large datasets?"
 objectives:
 - "Learn to pull data directly from the internet to HPC"
 keypoints:
