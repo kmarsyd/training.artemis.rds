@@ -1,6 +1,9 @@
 ---
 title: "Transfer from LOCAL to Artemis HPC"
 teaching: 20
+Excercises: 10
+Questions:
+- "What tools can you use to copy data to a remote machine?"
 objectives:
 - "Learn to move data between local machine and remote HPC environemnt"
 keypoints:
@@ -10,15 +13,15 @@ keypoints:
 
 # Transfer from LOCAL to Artemis HPC
 
-Back to the case study... Since you haven’t run this kind of analysis before, your helpful collaborator has emailed you a ‘tar’ file (packaged directory) of scripts to use to analyse the data. 
+Back to the case study... Since you have not run this kind of analysis before, your helpful collaborator has emailed you a ‘tar’ file (a 'tape archive' or in modern times, simply a packaged directory) of scripts to use to analyse the data. 
 
-This file was emailed to you via Eventbrite. Please download the dogScripts.tar.gz file to your local computer for your email. Don’t unpack it yet. You can also download it from here: https://cloudstor.aarnet.edu.au/plus/s/F5bB2g9Gemn1xMj
+This file should have been emailed to you via Eventbrite. Please download the ***dogScripts.tar.gz*** file to your local computer for your email. Do not unpack it just yet. You can also download it from here: [https://cloudstor.aarnet.edu.au/plus/s/F5bB2g9Gemn1xMj](https://cloudstor.aarnet.edu.au/plus/s/F5bB2g9Gemn1xMj)
 
-This local file needs to be transferred to Artemis HPC. This can be done via a Graphical User Interface (GUI) tool (ie “point and click”) such as [FileZilla](https://filezilla-project.org/) or [WinSCP](https://winscp.net/eng/download.php), or via the command line. You may choose whichever method you prefer. Please note: if you choose to install FileZilla, ensure to UNSELECT the sneaky inclusion of ‘Avast Antivirus’ and ‘Opera Browser’ during the installation!
+This local file needs to be transferred to the Artemis HPC. This can be done via a Graphical User Interface (GUI) tool (i.e. “point and click”) such as [FileZilla](https://filezilla-project.org/) or [WinSCP](https://winscp.net/eng/download.php), or via the command line. You may choose whichever method you prefer. Please note: if you choose to install FileZilla, ensure to UNSELECT the sneaky inclusion of any bloatware during the installation!
 
-Note for Windows users: if you would prefer to use command line rather than install a GUI, you need to use a *Nix command line, NOT the Windows command prompt. If you have Windows 10, you can [install Ubuntu](https://tutorials.ubuntu.com/tutorial/tutorial-ubuntu-on-windows#0) from the Microsoft store. Any version of Windows can use [Cygwin](https://www.cygwin.com/).  
+Note for Windows users: if you would prefer to use command line rather than install a GUI, you need to use a *Nix command line, NOT the Windows Command Prompt. If you have Windows 10, you can [install Ubuntu](https://tutorials.ubuntu.com/tutorial/tutorial-ubuntu-on-windows#0) from the Microsoft store. Or any version of Windows can use [Cygwin](https://www.cygwin.com/).  
 
-Mac users: you can use your Mac terminal app. Keep your Artemis session open, and open a new Mac terminal for your local session. It's often convenient to work with multiple environments open at the same time.
+Note for Mac users: you can use your Mac terminal app. Keep your Artemis session open, and open a new Mac terminal for your local session. It is often convenient to work with multiple environments open at the same time.
 
 
 ## Instructions for using command line ‘scp’ to copy a local file to Artemis:
@@ -26,10 +29,10 @@ Mac users: you can use your Mac terminal app. Keep your Artemis session open, an
 First, change into the directory that contains the data you want to transfer (or else you will need to prepend the full pathname in front of the file name). 
 
 The syntax for scp is
-~~~
+```
 scp <user@host:file> <user@host:to> 
-~~~
-{: .bash} 
+```
+
 
 Since the file to be transferred is local, you do not need to include user@host. Run the below command to copy the scripts archive to your working directory on Artemis:
 
@@ -86,7 +89,7 @@ In the ‘Remote site’ field, type:
 /project/Training/<yourDirectoryName>
 ```
 
-then press enter. Now that your destination directory is open and ready to receive the upload, locate the ```dogScripts.tar.gz``` file on the left (local) (it may be in your Downloads folder?)
+then press enter. Now that your destination directory is open and ready to receive the upload, locate the ```dogScripts.tar.gz``` file on the local host (left panel) (it may be in your Downloads folder?).
 
 To upload the file to Artemis, you can use any of the following methods:
 
