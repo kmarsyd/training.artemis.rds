@@ -53,6 +53,7 @@ where N is a number between 1 and 40. Each user today will have a different numb
 ~~~
 ssh ict_hpctrain<N>@hpc.sydney.edu.au
 ~~~
+{: .bash}
 
 Once you are connected to Artemis, make a directory for yourself to work in within the /project/Training directory. Call it something unique (not just “training”) and memorable. Please do not include spaces, and remember that CASE MATTERS very much on Linux systems. 
 
