@@ -33,7 +33,7 @@ smbclient //research-data-2.shared.sydney.edu.au/RDS-02 -U ict_hpctrain1 -W SHAR
 {: .bash}
 
 
-Note: the different command prompt ```\>``` instead of ```$```. Some Linux commands work (eg ```ls```, ```pwd```, ```cd```, ```mkdir```). Using the ```!``` in front of any normal linux expression will exectue the command on the "local/host" machine, otherwise the commands are executed on the "remote" machine.
+Note: the different command prompt ```\>``` instead of ```$```. Some Linux commands work (e.g. ```ls```, ```pwd```, ```cd```, ```mkdir```). Using the ```!``` in front of any normal linux expression will exectue the command on the "local/host" machine, otherwise the commands are executed on the "remote" machine.
 
 By default, ‘prompting’ (the system prompts you between transferring each file and awaits ‘Y’ or ‘N’ input) is ON. By default, ‘recurse’ (recursively copy directories) is OFF. 
 
@@ -49,7 +49,7 @@ recurse on
 Now, move into one of our project folders and make a directory for the dataset: 
 
 ~~~
-cd PRJ-sjkClassic
+cd PRJ-IQ3ClassicAttempt2
 
 mkdir Dog_disease 
 
@@ -72,13 +72,13 @@ mput Output
 
 The output data can now be readily accessed via the local file explorer under the mapped drive, without having to save the data onto your local hard drive 😊 
 
-Single files can be transferred from Artemis to classic RDS with ```put```. Single files can be transferred from classic RDS to Artemis with ```get```, or multiple files with ```mget```. To log out of smblicent, enter ```control + C```.
+Single files can be transferred from Artemis to classic RDS with ```put```. Single files can be transferred from classic RDS to Artemis with ```get```, or multiple files with ```mget```. To log out of smblicent, enter ```control + C``` or type ```exit```.
 
 
 ## Mounting ‘classic RDS’ on your local machine.
 Dependng on your operating system there are few ways to mount the classic RDS as a network drive.
 
-The steps wor Windoes 10 are:
+These steps work Windoes 10 are:
 
 * Click on This PC from the Desktop.
 * On the Computer tab, click on Map network drive in the Network section.
