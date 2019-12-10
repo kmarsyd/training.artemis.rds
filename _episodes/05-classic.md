@@ -1,12 +1,16 @@
 ---
 title: "Artemis, local, and the Classic RDS"
 teaching: 20
+exercises: 0
+questions:
+- "How can you access classic RDS from your local machine?"
+- "How can you access classic RDS from Artemis?"
 objectives:
 - "Learn to move data from Artemis to Classic RDS"
 - "Learn to move data from local to Classic RDS"
 keypoints:
 - "Use smbclient"
-- "Make a local network mount"
+- "Map a local network mount"
 ---
 
 # Transfer from Artemis to ‘classic RDS’ 
@@ -90,7 +94,12 @@ These steps work Windoes 10 are:
   <img src="{{ page.root }}/fig/pic09_classicmount.png" style="margin:10px;width:600px"/>
 </figure><br>
 
-For a full discussion, and mounting instructions for Windows/Mac OSX, and Linux, see here:
+## On Mac and Linux
+To mount on Linux or Mac operating systems, you can use the smb netowrk communication protocol (also known as CIFS) by mouting the path with:
+
+```smb://research-data-2.shared.sydney.edu.au/RDS-02```
+ 
+For a full discussion, and further mounting instructions for Windows/Mac OSX, and Linux, see here:
 https://sydneyuni.atlassian.net/wiki/spaces/RC/pages/229146744/Classic+RDS
 
 
