@@ -32,7 +32,7 @@ Thank you all for your attendance and participation. You have an idea of what me
 
 Please feel free to contact us with any questions: [sih.info@sydney.edu.au](mailto:sih.info@sydney.edu.au)
 
-We welcome your feedback, please complete the brief survey: https://redcap.sydney.edu.au/surveys/?s=FJ33MYNCRR](https://redcap.sydney.edu.au/surveys/?s=FJ33MYNCRR)
+We welcome your feedback, please complete the brief survey: [https://redcap.sydney.edu.au/surveys/?s=FJ33MYNCRR](https://redcap.sydney.edu.au/surveys/?s=FJ33MYNCRR)
 
 Check out the online documentation for more information:
 [https://sydneyuni.atlassian.net/wiki/spaces/RC/overview](https://sydneyuni.atlassian.net/wiki/spaces/RC/overview)
