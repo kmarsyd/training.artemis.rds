@@ -102,7 +102,7 @@ smb://research-data-2.shared.sydney.edu.au/RDS-02
 ```
  
 For a full discussion, and further mounting instructions for Windows/Mac OSX, and Linux, see here:
-https://sydneyuni.atlassian.net/wiki/spaces/RC/pages/229146744/Classic+RDS
+[https://sydneyuni.atlassian.net/wiki/spaces/RC/pages/229146744/Classic+RDS](https://sydneyuni.atlassian.net/wiki/spaces/RC/pages/229146744/Classic+RDS)
 
 
 
