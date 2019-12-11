@@ -86,21 +86,24 @@ These steps work Windoes 10 are:
 
 * Click on This PC from the Desktop.
 * On the Computer tab, click on Map network drive in the Network section.
-* Choose a drive letter and enter your Classic RDS path: \\research-data-2.shared.sydney.edu.au\RDS-02.
-* Enter SHARED\<UniKey> and your password.
+* Choose a drive letter and enter your Classic RDS path: ```\\research-data-2.shared.sydney.edu.au\RDS-02```.
+* Enter ```SHARED\<UniKey>``` and your password.
 * Click Finish.
 
 <figure>
   <img src="{{ page.root }}/fig/pic09_classicmount.png" style="margin:10px;width:600px"/>
 </figure><br>
 
-## On Mac and Linux
-To mount on Linux or Mac operating systems, you can use the smb netowrk communication protocol (also known as CIFS) by mouting the path with:
+### On Mac and Linux
+To mount on Linux or Mac operating systems, you can use the smb network communication protocol (also known as CIFS) by mounting the path with:
 
-```smb://research-data-2.shared.sydney.edu.au/RDS-02```
+```
+smb://research-data-2.shared.sydney.edu.au/RDS-02
+```
  
 For a full discussion, and further mounting instructions for Windows/Mac OSX, and Linux, see here:
 https://sydneyuni.atlassian.net/wiki/spaces/RC/pages/229146744/Classic+RDS
+
 
 
 <br>
