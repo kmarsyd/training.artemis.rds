@@ -17,7 +17,7 @@ This episode introduces the Research Data Storage options available at the Unive
 
 # What is the Research Data Store?
 
-Artemis is not backed up. Its hardware is geared towards processing. We have a dedicated set of machines for safe data storage, collectively referred to as the Research Data Store (RDS). RDS has two “flavours”: ***Research Computing Optimised Storage (RCOS)*** and ***‘Classic’ RDS***. While the names differ, they are both RDS, both backed up, and both linked to a project via the Researcher Dashboard (DashR). However, they are separate machines, so each project in DashR can have only one or the other. 
+Artemis is not backed up. Its hardware is geared towards processing. We have a dedicated set of machines for safe data storage, collectively referred to as the Research Data Store (RDS). RDS has two “flavours”: ***Research Computing Optimised Storage (RCOS)*** and ***‘Classic’ RDS***. While the names differ, they are both RDS, both backed up, and both linked to a project via the Researcher Dashboard (DashR). However, they are separate machines, so each project in [DashR](https://dashr.sydney.edu.au/) can have only one or the other. 
 
 When you fill in a DashR form, if you select Artemis HPC access for your project, the default selection for RDS is RCOS. You may change this to ‘classic’ RDS if this suits your needs best. 
 
