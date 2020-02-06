@@ -28,6 +28,10 @@ Your collaborator has placed the reference files needed in the ```Training``` RC
 ~~~
 {: .bash}
 
+***Note:*** the following steps may work best on the Artemis Production Instance. To move there execute:
+```
+module unload training
+```
 
 # The dt-script
 
