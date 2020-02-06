@@ -26,6 +26,22 @@ wget https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_familiaris/CHR_05/cfa_ref_
 gunzip cfa_ref_CanFam3.1_chr5.fa.gz 
 ```
 
+# Other Research Data storage options
+
+The University has access to several platforms that are useful for storing/transferring/serving research data.
+
+* Dropbox
+* Cloudstor
+* Microsoft OneDrive/SharePoint/Office365
+* GitHub
+* eNotebooks
+* Pawsey/NCI
+* Commerical Cloud
+* ICT hosted virtual machines
+
+See here for more info: https://sydney.edu.au/research/facilities/sydney-informatics-hub/digital-research-infrastructure.html
+
+
 # Wrap up 
 
 Thank you all for your attendance and participation. You have an idea of what methods can be used to transfer data between RDS, Artemis HPC, web and your local computer.  
