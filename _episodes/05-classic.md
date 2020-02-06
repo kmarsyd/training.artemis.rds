@@ -32,7 +32,7 @@ smbclient <path> -U <unikey> -W SHARED
 In this case: 
 
 ~~~
-smbclient //research-data-2.shared.sydney.edu.au/RDS-02 -U ict_hpctrain1 -W SHARED 
+smbclient //research-data-2.shared.sydney.edu.au/RDS-02 -U ict_hpctrain<n> -W SHARED 
 ~~~
 {: .bash}
 
