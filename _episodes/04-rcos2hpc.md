@@ -1,5 +1,5 @@
 ---
-title: "Transfer from RCOS to Artemis HPC"
+title: "Transfer between remote RCOS and Artemis HPC"
 teaching: 30
 objectives:
 - "Learn to move data between Artemis HPC and RCOS"
@@ -150,7 +150,7 @@ Check using ```ls /rds/PRJ-Training``` that your data has been backed up on RCOS
 
 # Transfer from RCOS to local with FileZilla 
 
-Just as we accessed Artemis through the FileZilla interface earlier, we can likewise access the RCOS server. The hostname for RCOS server is 
+Just as we accessed Artemis through the FileZilla interface earlier, we can likewise directly access the RCOS server. The hostname for RCOS server is 
 
 From external to university network:
 ```
