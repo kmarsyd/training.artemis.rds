@@ -12,7 +12,7 @@ keypoints:
 - "Connect from local to RCOS"
 ---
 
-# Transfer from RCOS to Artemis HPC 
+# Transfer between RCOS and Artemis HPC 
 
 You now have scripts, raw data and a reference file. Your collaborator has informed you that the reference files also needs associated  ‘index files’ and that they have previously prepared these and saved them on RCOS. The Artemis compute nodes can’t read directly from RCOS. They may appear seamless, but they are actually different physical machines situated at opposite ends of Sydney! So these files need to be copied from RCOS to Artemis. 
 
