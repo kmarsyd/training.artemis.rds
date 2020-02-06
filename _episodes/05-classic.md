@@ -17,7 +17,7 @@ keypoints:
 
 Your collaborator wants you to bring a local copy of the data to the conference next week. You don’t have much space for this massive dataset on your laptop, so you back it up to ‘classic RDS’ so you can easily show the data via your mapped network drive. 
 
-This part will be demonstrated (you do not have to perform this). 
+***This part will be demonstrated.*** You do not have to perform this, as not all accounts are part of DASHR projects with Classic RDS access.
 
 To map ‘classic RDS’ network drive, follow the instructions here. Note that the path will differ depending on when your RDS was created.
 
@@ -32,7 +32,7 @@ smbclient <path> -U <unikey> -W SHARED
 In this case: 
 
 ~~~
-smbclient //research-data-2.shared.sydney.edu.au/RDS-02 -U ict_hpctrain<n> -W SHARED 
+smbclient //research-data-2.shared.sydney.edu.au/RDS-02 -U ict_hpctrain1 -W SHARED 
 ~~~
 {: .bash}
 
