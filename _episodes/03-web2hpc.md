@@ -25,7 +25,7 @@ In a web browser, go to [https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_famili
 Within your Artemis terminal, enter the ```wget``` command, then after a space, paste the URL:
 
 ~~~
-wget https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_familiaris/CHR_05/cfa_ref_CanFam3.1_chr5.fa.gz 
+wget https://biomirror.mirror.ac.za/ncbigenomes/Canis_familiaris/CHR_05/cfa_ref_CanFam3.1_chr5.fa.gz
 ~~~
 {: .bash}
 
