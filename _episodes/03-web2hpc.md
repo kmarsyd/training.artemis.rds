@@ -16,7 +16,7 @@ keypoints:
 
 You need to get a reference file from an online database to use as input for your analysis. A simple way of retrieving files from the web is using the command line utility ‘wget’ (web-get). 
 
-In a web browser, go to [https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_familiaris/CHR_05/](https://ftp.ncbi.nlm.nih.gov/genomes/Canis_lupus_familiaris/CHR_05/) . Right click on the file ```cfa_ref_CanFam3.1_chr5.fa.gz``` then select “Copy link address” or “Copy link location”. 
+In a web browser, go to [https://biomirror.mirror.ac.za/ncbigenomes/Canis_familiaris/CHR_05/](https://biomirror.mirror.ac.za/ncbigenomes/Canis_familiaris/CHR_05/) . Right click on the file ```cfa_ref_CanFam3.1_chr5.fa.gz``` then select “Copy link address” or “Copy link location”. 
 
 <figure>
   <img src="{{ page.root }}/fig/pic04_web.png" style="margin:10px;width:600px"/>
